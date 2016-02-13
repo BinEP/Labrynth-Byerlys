@@ -1,16 +1,17 @@
 # Labrynth-Byerlys
 
 Variables to use
-controller - add BSShapes to this. Only add shapes once. They always get drawn.
+controller - add BSShapes to this. <br>
+Only add shapes once. They always get drawn.
 
-List of BSShapes
-BSCircle
-BSCompound
-BSEllipse
-BSLine
-BSLine
-BSPolygon
-BSString
+List of BSShapes <br>
+- BSCircle
+- BSCompound
+- BSEllipse
+- BSLine
+- BSLine
+- BSPolygon
+- BSString
 
 Methods and variables to use for Shapes. Plus anything inside of the shapes
 
