@@ -15,7 +15,7 @@ BSString
 Methods and variables to use for Shapes. Plus anything inside of the shapes
 
 '''
-public int deltaX = 0;
+	public int deltaX = 0;
 	public int deltaY = 0;
 	private Direction direction = Direction.none;
 	private Color color = Color.WHITE;
@@ -23,7 +23,7 @@ public int deltaX = 0;
 	
 	public int x;
 	public int y;
-public int deltaX = 0;
+	public int deltaX = 0;
 	public int deltaY = 0;
 	private Direction direction = Direction.none;
 	private Color color = Color.WHITE;
