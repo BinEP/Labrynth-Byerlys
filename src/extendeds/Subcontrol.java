@@ -3,6 +3,10 @@ package extendeds;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import controllers.BuilderPoints;
+import controllers.Maze;
+import controllers.NetworkController;
+import controllers.RunnerPoints;
 import game_actions.Scene;
 import shapes.interfaces.BSShape;
 
@@ -10,6 +14,12 @@ public class Subcontrol {
 	
 	public ArrayList<Controller> controllers = new ArrayList<Controller>();
 	public static Scene ALWAYS_DRAW_SCENE = new Scene("AlwaysDraw");
+	
+	public static final BuilderPoints BUILDER_POINTS = new BuilderPoints();
+	public static final Maze MAZE = new Maze();
+	public static final NetworkController NETWORK_CONTROLLER = new NetworkController();
+	public static final RunnerPoints RUNNER_POINTS = new RunnerPoints();
+	
 	
 	public static void addShapeToAlwaysBeDrawn(BSShape shape) {
 		ALWAYS_DRAW_SCENE.addShapeToBeDrawn(shape);
