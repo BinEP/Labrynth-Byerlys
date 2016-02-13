@@ -20,6 +20,12 @@ public class Subcontrol {
 	public static final NetworkController NETWORK_CONTROLLER = new NetworkController();
 	public static final RunnerPoints RUNNER_POINTS = new RunnerPoints();
 	
+	public Subcontrol() {
+		controllers.add(BUILDER_POINTS);
+		controllers.add(MAZE);
+		controllers.add(NETWORK_CONTROLLER);
+		controllers.add(RUNNER_POINTS);
+	}
 	
 	public static void addShapeToAlwaysBeDrawn(BSShape shape) {
 		ALWAYS_DRAW_SCENE.addShapeToBeDrawn(shape);
