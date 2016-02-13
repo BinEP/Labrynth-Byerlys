@@ -1,7 +1,7 @@
 # Labrynth-Byerlys
 
-Variables to use
-controller - add BSShapes to this. <br>
+Variables to use<br>
+- controller - add BSShapes to this. <br>
 Only add shapes once. They always get drawn.
 
 List of BSShapes <br>
