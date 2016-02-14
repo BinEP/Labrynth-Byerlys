@@ -7,19 +7,20 @@ import java.util.ArrayList;
 import shapes.BSRectangle;
 import shapes.interfaces.BSShape;
 import extendeds.Controller;
+import extendeds.Subcontrol;
 
 public class Maze extends Controller {
 	
-	public static int xStartCoord = 200;
-	public static int yStartCoord = 40;
-	public static int tileSize = 40;
-	public static int mapSide = 400;
-	public static int runnerSize = 30;
+	public int xStartCoord = 200;
+	public int yStartCoord = 40;
+	public int tileSize = 40;
+	public int mapSide = 400;
+	public int runnerSize = 30;
 	
 	ArrayList<BSShape> shapes = new ArrayList<BSShape>();
 	
 //	public BSRectangle mapSize = new BSRectangle(xStartCoord, yStartCoord, mapSide, mapSide);
-	public static int[][] map = 
+	public int[][] map = 
 		   {{0, 1, 1, 0, 0, 0, 1, 0, 0, 0}, 
 			{0, 0, 0, 1, 1, 0, 1, 0, 1, 1}, 
 			{0, 1, 0, 1, 1, 0, 1, 0, 1, 0}, 
@@ -34,9 +35,10 @@ public class Maze extends Controller {
 	
 	public BSRectangle runnerVision = new BSRectangle(xStartCoord - 25, 335, tileSize * 3, tileSize * 3);
 	
-	public static void main(String[] args) {
-		
+	public Maze(Subcontrol control){
+		super(control);
 	}
+	
 
 	@Override
 	public void update() {

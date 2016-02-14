@@ -53,7 +53,8 @@ public class ScreenButtons extends Controller {
 	public BSPolygon arrowHead = new BSPolygon(arrowHeadX, arrowHeadY, 4);
 	public BSCompound arrow;
 	
-	public ScreenButtons(){
+	public ScreenButtons(Subcontrol control){
+		super(control);
 		Subcontrol.controllers.add(this);
 		bananaStem.setColor(Color.GREEN);
 		bananaPeel.setColor(Color.YELLOW);
@@ -69,9 +70,7 @@ public class ScreenButtons extends Controller {
 		arrow = new BSCompound(arrowBody, arrowHead);
 	}
 	
-	public static void main(String[] args) {
-		
-	}
+	
 
 	@Override
 	public void update() {

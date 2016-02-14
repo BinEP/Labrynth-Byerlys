@@ -5,9 +5,6 @@ import java.awt.Graphics2D;
 import extendeds.Controller;
 
 public class NetworkController extends Controller {
-	public static void main(String[] args) {
-
-	}
 
 	@Override
 	public void update() {

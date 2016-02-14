@@ -19,11 +19,11 @@ public class RunnerPoints extends Controller {
 
 	*/
     
-    public static boolean hidden = false;
-    public static boolean suspended = false;
-    public static int points = 30;
-    public static int hideTimeout = 0;
-    public static int suspendTimeout = 0;
+    public boolean hidden = false;
+    public boolean suspended = false;
+    public int points = 30;
+    public int hideTimeout = 0;
+    public int suspendTimeout = 0;
     
     public int ticks = 100;
     public int ticksMin = 100;
@@ -32,12 +32,16 @@ public class RunnerPoints extends Controller {
     	noPoints, nothingThere, outOfBounds, wall, appleSauce, banana, noError, tooFast
     }
     
-    public static int OPEN = 0;
-    public static int WALL = 1;
-    public static int BANANA = 2;
-    public static int APPLE_SAUCE = 3;
+    public int OPEN = 0;
+    public int WALL = 1;
+    public int BANANA = 2;
+    public int APPLE_SAUCE = 3;
 	
 	public BSRectangle runner = new BSRectangle(0, Maze.map.length - 1, Maze.runnerSize, Maze.runnerSize);
+	
+	public RunnerPoints(Subcontrol control){
+		super(control);
+	}
 	
 	public void timeouts(){
 	    if (hidden || suspended){
