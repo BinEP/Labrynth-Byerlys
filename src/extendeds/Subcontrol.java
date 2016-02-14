@@ -9,6 +9,7 @@ import controllers.BuilderPoints;
 import controllers.Maze;
 import controllers.NetworkController;
 import controllers.RunnerPoints;
+import controllers.ScreenButtons;
 import game_actions.Scene;
 import shapes.interfaces.BSShape;
 
@@ -23,6 +24,7 @@ public class Subcontrol {
 	public final Maze MAZE = new Maze(this);
 	public final NetworkController NETWORK_CONTROLLER = new NetworkController(this);
 	public final RunnerPoints RUNNER_POINTS = new RunnerPoints(this);
+	public final ScreenButtons SCREEN_BUTTONS = new ScreenButtons(this);
 	public NetGameState state;
 	
 	public Subcontrol() {
@@ -30,6 +32,7 @@ public class Subcontrol {
 		controllers.add(MAZE);
 		controllers.add(NETWORK_CONTROLLER);
 		controllers.add(RUNNER_POINTS);
+		controllers.add(SCREEN_BUTTONS);
 	}
 	
 	public static void addShapeToAlwaysBeDrawn(BSShape shape) {
