@@ -29,7 +29,7 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
     public int hideTimeout = 0;
     public int suspendTimeout = 0;
     
-    public int ticksMin = 10;
+    public int ticksMin = 20;
     public int ticks = ticksMin;
 
     public boolean moved = false;
@@ -71,84 +71,87 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 	}
 
 	public MovementError move(int direction) { // 1 = up, 2 = right, 3 = down, 4 = left
-		
-//		if (!(main.networkManager.sent && main.networkManager.received) || !(!main.networkManager.sent && !main.networkManager.received)) {
-//			main.networkManager.sent = false;
-//			main.networkManager.received = false;
-			if (ticks < ticksMin) {
-				return MovementError.tooFast;
-			}
-//		}
-		
-		ticks = 0;
-		
-		//if (points == 0) return MovementError.noPoints;
-		if (state.runner.x == 9 && direction == 2) return MovementError.outOfBounds; //out of bounds, return 5
-		if (state.runner.x == 0 && direction == 4) return MovementError.outOfBounds; //out of bounds
-		if (state.runner.y == 9 && direction == 3) return MovementError.outOfBounds; // out of bounds
-		if (state.runner.y == 0 && direction == 1) return MovementError.outOfBounds; //out of bounds
-		
-		System.out.println("Check Directions");
-		
-		if (direction == 1) {
-//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
-//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
-//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == BANANA) {
-//				subController.MAZE.map[state.runner.y - 1][state.runner.x] = OPEN;
-//				suspended = true;
-//			}
-//			
-//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == OPEN)
-//				state.runner.y--;
-			MovementError err = checkMovement(0, -1);
-			if (err != MovementError.noError) return err;
+		if (main.role.role){
+	//		if (!(main.networkManager.sent && main.networkManager.received) || !(!main.networkManager.sent && !main.networkManager.received)) {
+	//			main.networkManager.sent = false;
+	//			main.networkManager.received = false;
+				if (ticks < ticksMin) {
+					return MovementError.tooFast;
+				}
+	//		}
 			
-		} else if (direction == 2) {
-//			if (subController.MAZE.map[state.runner.y][state.runner.x + 1] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
-//			if (subController.MAZE.map[state.runner.y][state.runner.x + 1] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
-//			if (subController.MAZE.map[state.runner.y][state.runner.x + 1] == BANANA) {
-//				subController.MAZE.map[state.runner.y][state.runner.x + 1] = OPEN;
-//				suspended = true;
-//			}
-//			if (subController.MAZE.map[state.runner.y][state.runner.x+1] == 0){
-//				state.runner.x++;
-//			}
-			MovementError err = checkMovement(1, 0);
-			if (err != MovementError.noError) return err;
-		}
-		else if (direction == 3) {
-//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
-//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
-//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == BANANA) {
-//				subController.MAZE.map[state.runner.y+1][state.runner.x] = OPEN;
-//				suspended = true;
-//			}
-//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == 0)
-//				state.runner.y++;
-			MovementError err = checkMovement(0, 1);
-			if (err != MovementError.noError) return err;
-		}
-		else if (direction == 4) {
-//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 1) return 3; //if there is a wall in postion return 3.
-//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 3) return 4; 
-//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 2){
-//				subController.MAZE.map[state.runner.y][state.runner.x - 1] = 0;
-//				suspended = true;
-//				suspendTimeout = 1;
-//			}
-//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 0){
-//				state.runner.x--;
-//			}
-			MovementError err = checkMovement(-1, 0);
-			if (err != MovementError.noError) return err;
+			ticks = 0;
+			
+			//if (points == 0) return MovementError.noPoints;
+			if (state.runner.x == 9 && direction == 2) return MovementError.outOfBounds; //out of bounds, return 5
+			if (state.runner.x == 0 && direction == 4) return MovementError.outOfBounds; //out of bounds
+			if (state.runner.y == 9 && direction == 3) return MovementError.outOfBounds; // out of bounds
+			if (state.runner.y == 0 && direction == 1) return MovementError.outOfBounds; //out of bounds
+			
+			System.out.println("Check Directions");
+			
+			if (direction == 1) {
+	//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
+	//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
+	//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == BANANA) {
+	//				subController.MAZE.map[state.runner.y - 1][state.runner.x] = OPEN;
+	//				suspended = true;
+	//			}
+	//			
+	//			if (subController.MAZE.map[state.runner.y - 1][state.runner.x] == OPEN)
+	//				state.runner.y--;
+				MovementError err = checkMovement(0, -1);
+				if (err != MovementError.noError) return err;
+				
+			} else if (direction == 2) {
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x + 1] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x + 1] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x + 1] == BANANA) {
+	//				subController.MAZE.map[state.runner.y][state.runner.x + 1] = OPEN;
+	//				suspended = true;
+	//			}
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x+1] == 0){
+	//				state.runner.x++;
+	//			}
+				MovementError err = checkMovement(1, 0);
+				if (err != MovementError.noError) return err;
+			}
+			else if (direction == 3) {
+	//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
+	//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
+	//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == BANANA) {
+	//				subController.MAZE.map[state.runner.y+1][state.runner.x] = OPEN;
+	//				suspended = true;
+	//			}
+	//			if (subController.MAZE.map[state.runner.y+1][state.runner.x] == 0)
+	//				state.runner.y++;
+				MovementError err = checkMovement(0, 1);
+				if (err != MovementError.noError) return err;
+			}
+			else if (direction == 4) {
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 1) return 3; //if there is a wall in postion return 3.
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 3) return 4; 
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 2){
+	//				subController.MAZE.map[state.runner.y][state.runner.x - 1] = 0;
+	//				suspended = true;
+	//				suspendTimeout = 1;
+	//			}
+	//			if (subController.MAZE.map[state.runner.y][state.runner.x - 1] == 0){
+	//				state.runner.x--;
+	//			}
+				MovementError err = checkMovement(-1, 0);
+				if (err != MovementError.noError) return err;
+			}
+			
+			//points--;
+			if (main.role.role) {
+				moved = true;
+				subController.MAZE.moved = true;
+			}
 		}
 		
-		//points--;
-		if (main.role.role) {
-			moved = true;
-			subController.MAZE.moved = true;
-		}
 		return MovementError.noError;
+		
 	}
 
 	public MovementError checkMovement(int deltaX, int deltaY) {
