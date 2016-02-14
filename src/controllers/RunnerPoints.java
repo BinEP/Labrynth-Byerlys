@@ -37,7 +37,7 @@ public class RunnerPoints extends Controller {
     public int BANANA = 2;
     public int APPLE_SAUCE = 3;
 	
-	public BSRectangle runner = new BSRectangle(0, Maze.map.length - 1, Maze.runnerSize, Maze.runnerSize);
+	public BSRectangle runner = new BSRectangle(0, subController.MAZE.map.length - 1, subController.MAZE.runnerSize, subController.MAZE.runnerSize);
 	
 	public RunnerPoints(Subcontrol control){
 		super(control);
@@ -54,10 +54,10 @@ public class RunnerPoints extends Controller {
 	
 	public MovementError pickUpBanana(int yLocation, int xLocation) {
 		if (points == 0) return MovementError.noPoints; //if not enough points, returns 1
-		if (Maze.map[yLocation][xLocation] == OPEN) return MovementError.nothingThere; //if there is nothing in position, returns 2
-		if (Maze.map[yLocation][xLocation] == WALL) return MovementError.wall; //if there is a wall in positon, return 3
-		if (Maze.map[yLocation][xLocation] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in postion return 4
-		Maze.map[yLocation][xLocation] = OPEN; //sets map location with banana to "free"
+		if (subController.MAZE.map[yLocation][xLocation] == OPEN) return MovementError.nothingThere; //if there is nothing in position, returns 2
+		if (subController.MAZE.map[yLocation][xLocation] == WALL) return MovementError.wall; //if there is a wall in positon, return 3
+		if (subController.MAZE.map[yLocation][xLocation] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in postion return 4
+		subController.MAZE.map[yLocation][xLocation] = OPEN; //sets map location with banana to "free"
 		points--; //deducts 1 point
 		return MovementError.noError;
 	}
@@ -75,52 +75,52 @@ public class RunnerPoints extends Controller {
 		System.out.println("Check Directions");
 		
 		if (direction == 1) {
-//			if (Maze.map[runner.y - 1][runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
-//			if (Maze.map[runner.y - 1][runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
-//			if (Maze.map[runner.y - 1][runner.x] == BANANA) {
-//				Maze.map[runner.y - 1][runner.x] = OPEN;
+//			if (subController.MAZE.map[runner.y - 1][runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
+//			if (subController.MAZE.map[runner.y - 1][runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
+//			if (subController.MAZE.map[runner.y - 1][runner.x] == BANANA) {
+//				subController.MAZE.map[runner.y - 1][runner.x] = OPEN;
 //				suspended = true;
 //			}
 //			
-//			if (Maze.map[runner.y - 1][runner.x] == OPEN)
+//			if (subController.MAZE.map[runner.y - 1][runner.x] == OPEN)
 //				runner.y--;
 			MovementError err = checkMovement(0, -1);
 			if (err != MovementError.noError) return err;
 			
 		} else if (direction == 2) {
-//			if (Maze.map[runner.y][runner.x + 1] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
-//			if (Maze.map[runner.y][runner.x + 1] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
-//			if (Maze.map[runner.y][runner.x + 1] == BANANA) {
-//				Maze.map[runner.y][runner.x + 1] = OPEN;
+//			if (subController.MAZE.map[runner.y][runner.x + 1] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
+//			if (subController.MAZE.map[runner.y][runner.x + 1] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
+//			if (subController.MAZE.map[runner.y][runner.x + 1] == BANANA) {
+//				subController.MAZE.map[runner.y][runner.x + 1] = OPEN;
 //				suspended = true;
 //			}
-//			if (Maze.map[runner.y][runner.x+1] == 0){
+//			if (subController.MAZE.map[runner.y][runner.x+1] == 0){
 //				runner.x++;
 //			}
 			MovementError err = checkMovement(1, 0);
 			if (err != MovementError.noError) return err;
 		}
 		else if (direction == 3) {
-//			if (Maze.map[runner.y+1][runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
-//			if (Maze.map[runner.y+1][runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
-//			if (Maze.map[runner.y+1][runner.x] == BANANA) {
-//				Maze.map[runner.y+1][runner.x] = OPEN;
+//			if (subController.MAZE.map[runner.y+1][runner.x] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
+//			if (subController.MAZE.map[runner.y+1][runner.x] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
+//			if (subController.MAZE.map[runner.y+1][runner.x] == BANANA) {
+//				subController.MAZE.map[runner.y+1][runner.x] = OPEN;
 //				suspended = true;
 //			}
-//			if (Maze.map[runner.y+1][runner.x] == 0)
+//			if (subController.MAZE.map[runner.y+1][runner.x] == 0)
 //				runner.y++;
 			MovementError err = checkMovement(0, 1);
 			if (err != MovementError.noError) return err;
 		}
 		else if (direction == 4) {
-//			if (Maze.map[runner.y][runner.x - 1] == 1) return 3; //if there is a wall in postion return 3.
-//			if (Maze.map[runner.y][runner.x - 1] == 3) return 4; 
-//			if (Maze.map[runner.y][runner.x - 1] == 2){
-//				Maze.map[runner.y][runner.x - 1] = 0;
+//			if (subController.MAZE.map[runner.y][runner.x - 1] == 1) return 3; //if there is a wall in postion return 3.
+//			if (subController.MAZE.map[runner.y][runner.x - 1] == 3) return 4; 
+//			if (subController.MAZE.map[runner.y][runner.x - 1] == 2){
+//				subController.MAZE.map[runner.y][runner.x - 1] = 0;
 //				suspended = true;
 //				suspendTimeout = 1;
 //			}
-//			if (Maze.map[runner.y][runner.x - 1] == 0){
+//			if (subController.MAZE.map[runner.y][runner.x - 1] == 0){
 //				runner.x--;
 //			}
 			MovementError err = checkMovement(-1, 0);
@@ -133,14 +133,14 @@ public class RunnerPoints extends Controller {
 
 	public MovementError checkMovement(int deltaX, int deltaY) {
 		System.out.println("Check Movement");
-		if (Maze.map[runner.y + deltaY][runner.x + deltaX] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
-		if (Maze.map[runner.y + deltaY][runner.x + deltaX] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
-		if (Maze.map[runner.y + deltaY][runner.x + deltaX] == BANANA) {
-			Maze.map[runner.y + deltaY][runner.x + deltaX] = OPEN;
+		if (subController.MAZE.map[runner.y + deltaY][runner.x + deltaX] == WALL) return MovementError.wall; //if there is a wall in postion return 3.
+		if (subController.MAZE.map[runner.y + deltaY][runner.x + deltaX] == APPLE_SAUCE) return MovementError.appleSauce; //if there is apple sauce in position return 4
+		if (subController.MAZE.map[runner.y + deltaY][runner.x + deltaX] == BANANA) {
+			subController.MAZE.map[runner.y + deltaY][runner.x + deltaX] = OPEN;
 			suspended = true;
 		}
 		System.out.println("Should Move");
-		if (Maze.map[runner.y + deltaY][runner.x + deltaX] == OPEN) {
+		if (subController.MAZE.map[runner.y + deltaY][runner.x + deltaX] == OPEN) {
 			runner.x += deltaX;
 			runner.y += deltaY;
 		}
@@ -148,11 +148,11 @@ public class RunnerPoints extends Controller {
 	}
 
 	public MovementError c4(int yLocation, int xLocation){
-		if (Maze.map[yLocation][xLocation] == APPLE_SAUCE) return MovementError.appleSauce;//if there is apple sauce in position return 4
-		if (Maze.map[yLocation][xLocation] == BANANA) return MovementError.banana; //if there is banana in position return 7
-//		if (Maze.map[yLocation][xLocation] == OPEN) return MovementError.nothingThere; //if there is nothing in postion return 2
-		if (Maze.map[yLocation][xLocation] == WALL) {
-			Maze.map[yLocation][xLocation] = OPEN;
+		if (subController.MAZE.map[yLocation][xLocation] == APPLE_SAUCE) return MovementError.appleSauce;//if there is apple sauce in position return 4
+		if (subController.MAZE.map[yLocation][xLocation] == BANANA) return MovementError.banana; //if there is banana in position return 7
+//		if (subController.MAZE.map[yLocation][xLocation] == OPEN) return MovementError.nothingThere; //if there is nothing in postion return 2
+		if (subController.MAZE.map[yLocation][xLocation] == WALL) {
+			subController.MAZE.map[yLocation][xLocation] = OPEN;
 			points -= 3;
 			
 		}
@@ -217,7 +217,7 @@ public class RunnerPoints extends Controller {
 	@Override
 	public void drawPlaying(Graphics2D g) {
 		// TODO Auto - generated method stub
-		BSRectangle scaledRunner = new BSRectangle(runner.x * Maze.tileSize + Maze.xStartCoord + 5, 5 + runner.y * Maze.tileSize, Maze.runnerSize, Maze.runnerSize);
+		BSRectangle scaledRunner = new BSRectangle(runner.x * subController.MAZE.tileSize + subController.MAZE.xStartCoord + 5, 5 + runner.y * subController.MAZE.tileSize, subController.MAZE.runnerSize, subController.MAZE.runnerSize);
 		scaledRunner.setColor(Color.GREEN);
 		scaledRunner.autoDraw(g);
 	}

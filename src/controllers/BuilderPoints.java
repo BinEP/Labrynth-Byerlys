@@ -29,10 +29,10 @@ public class BuilderPoints extends Controller {
 	}
 
 	public int spillAppleSauce(int yLoc, int xLoc){
-		if(Subcontrol.MAZE.map[yLoc][xLoc]==3) return 16;
-		if(Subcontrol.MAZE.map[yLoc][xLoc]==1) return 17;
-		if(Subcontrol.MAZE.map[yLoc][xLoc]==2) return 18;
-		Subcontrol.MAZE.map[yLoc][xLoc]=3;
+		if(subController.MAZE.map[yLoc][xLoc]==3) return 16;
+		if(subController.MAZE.map[yLoc][xLoc]==1) return 17;
+		if(subController.MAZE.map[yLoc][xLoc]==2) return 18;
+		subController.MAZE.map[yLoc][xLoc]=3;
 		points = points-3;
 		int i;
 		for (i = 0; spill[i][0] != 0; i++){
@@ -47,7 +47,7 @@ public class BuilderPoints extends Controller {
 	    for(int i = 0; i<15; i++){
 	    	if (spill[i][0] == 1){
 	    		spill[i][0] = 0;
-	    		Subcontrol.MAZE.map[spill[i][1]][spill[i][2]] = 0;
+	    		subController.MAZE.map[spill[i][1]][spill[i][2]] = 0;
 	    		spill[i][1] = 0;
 	    		spill[i][2] = 0;
 	    	}
@@ -59,25 +59,25 @@ public class BuilderPoints extends Controller {
 	    } 
 
 	public int removeSection(int yLocation, int xLocation){
-		if (Subcontrol.MAZE.map[yLocation][xLocation] != 1) return 11;
-		Subcontrol.MAZE.map[yLocation][xLocation] = 0;
+		if (subController.MAZE.map[yLocation][xLocation] != 1) return 11;
+		subController.MAZE.map[yLocation][xLocation] = 0;
 		points++;
 		return 0;
 	}
 
 	public int buildSection(int yLocation, int xLocation){
-		if (Subcontrol.MAZE.map[yLocation][xLocation] == 1) return 12;
-		if (Subcontrol.MAZE.map[yLocation][xLocation] == 2 || Subcontrol.MAZE.map[yLocation][xLocation] == 3) return 13;
-		Subcontrol.MAZE.map[yLocation][xLocation] = 0;
+		if (subController.MAZE.map[yLocation][xLocation] == 1) return 12;
+		if (subController.MAZE.map[yLocation][xLocation] == 2 || subController.MAZE.map[yLocation][xLocation] == 3) return 13;
+		subController.MAZE.map[yLocation][xLocation] = 0;
 		points = points-3;
 		return 0;
 	}
 
 	public int putBananaPeel(int yLocation, int xLocation){
-		if (Subcontrol.MAZE.map[yLocation][xLocation] == 1) return 12;
-		if (Subcontrol.MAZE.map[yLocation][xLocation] == 2) return 14;
-		if (Subcontrol.MAZE.map[yLocation][xLocation] == 3) return 15;
-		Subcontrol.MAZE.map[yLocation][xLocation] = 2;
+		if (subController.MAZE.map[yLocation][xLocation] == 1) return 12;
+		if (subController.MAZE.map[yLocation][xLocation] == 2) return 14;
+		if (subController.MAZE.map[yLocation][xLocation] == 3) return 15;
+		subController.MAZE.map[yLocation][xLocation] = 2;
 		points--;
 		return 0;
 	}

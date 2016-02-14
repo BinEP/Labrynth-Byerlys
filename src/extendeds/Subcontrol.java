@@ -18,10 +18,10 @@ public class Subcontrol {
 	private Main main;
 	public static Scene ALWAYS_DRAW_SCENE = new Scene("AlwaysDraw");
 	
-	public static final BuilderPoints BUILDER_POINTS = new BuilderPoints();
-	public static final Maze MAZE = new Maze();
-	public static final NetworkController NETWORK_CONTROLLER = new NetworkController();
-	public static final RunnerPoints RUNNER_POINTS = new RunnerPoints();
+	public final BuilderPoints BUILDER_POINTS = new BuilderPoints(this);
+	public final Maze MAZE = new Maze(this);
+	public final NetworkController NETWORK_CONTROLLER = new NetworkController(this);
+	public final RunnerPoints RUNNER_POINTS = new RunnerPoints(this);
 	
 	public Subcontrol() {
 		controllers.add(BUILDER_POINTS);
