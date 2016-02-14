@@ -158,9 +158,19 @@ public class NetGameState implements Serializable {
 			
 			
 			
+		} else if (message instanceof BuilderGameState) {
+			BuilderGameState theState = (BuilderGameState) message;
+			fromWho = false;
+			button = theState.button;
+			x = theState.x;
+			y = theState.y;
 		}
 	}
 
+	
+	public String button;
+	public int x;
+	public int y;
 //	
 //
 //	public void resetColors() {

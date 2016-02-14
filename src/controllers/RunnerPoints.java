@@ -38,10 +38,10 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
     	noPoints, nothingThere, outOfBounds, wall, appleSauce, banana, noError, tooFast
     }
     
-    public int OPEN = 0;
-    public int WALL = 1;
-    public int BANANA = 2;
-    public int APPLE_SAUCE = 3;
+    public static final int OPEN = 0;
+    public static final int WALL = 1;
+    public static final int BANANA = 2;
+    public static final int APPLE_SAUCE = 3;
 	
 	public BSRectangle runner = new BSRectangle(0, subController.MAZE.map.length - 1, subController.MAZE.runnerSize, subController.MAZE.runnerSize);
 	
@@ -212,7 +212,7 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 			System.out.println("Left Pressed");
 			move(4);
 		}
-		
+		timeouts();
 	}
 
 	@Override
@@ -244,7 +244,9 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 		// TODO Auto - generated method stub
 		BSRectangle scaledRunner = new BSRectangle(state.runner.x * subController.MAZE.tileSize + subController.MAZE.xStartCoord + 5, 5 + state.runner.y * subController.MAZE.tileSize, subController.MAZE.runnerSize, subController.MAZE.runnerSize);
 		scaledRunner.setColor(Color.GREEN);
-		scaledRunner.autoDraw(g);
+		
+		if ((!hidden && !main.role.role) || main.role.role)
+			scaledRunner.autoDraw(g);
 	}
 
 	@Override

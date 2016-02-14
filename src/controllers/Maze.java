@@ -113,6 +113,10 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 	}
 
 
+	public void buttonPress(String button, int x, int y) {
+		if (button.equals("Banana")) map[y][x] = RunnerPoints.BANANA;
+	}
+	
 	@Override
 	public boolean ifNewState() {
 		// TODO Auto-generated method stub

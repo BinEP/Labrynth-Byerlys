@@ -117,6 +117,10 @@ public class NetworkManager {
 //		}
 	}
 	
+	public void buttonInfoNew(BuilderGameState st) {
+		connection.send(st);
+	}
+	
 	public boolean ifNewState() {
 		boolean ifNew = false;
 //		synchronized(netListeners) {

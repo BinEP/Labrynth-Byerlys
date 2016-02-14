@@ -36,10 +36,26 @@ public class Subcontrol {
 		ALWAYS_DRAW_SCENE.addShapeToBeDrawn(shape);
 	}
 	
-	public void updateState(NetGameState state) {
-		this.state = state;
-		for (Controller c : controllers) {
-			c.state = state;
+	public void updateState(NetGameState state, boolean fromWho) {
+		if (fromWho) {
+			this.state = state;
+			for (Controller c : controllers) {
+				c.state = state;
+			}
+		} else {
+			switch (state.button)  {
+			case "Banana" :
+				MAZE.buttonPress(state.button, state.x, state.y);
+				break;
+			case "Bomb" :
+				RUNNER_POINTS.c4(state.y, state.x);
+				break;
+			case "Ghost" :
+				RUNNER_POINTS.hide();
+				break;
+			
+			}
+			
 		}
 	}
 	
