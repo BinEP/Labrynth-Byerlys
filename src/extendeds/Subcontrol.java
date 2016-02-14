@@ -14,6 +14,7 @@ import shapes.interfaces.BSShape;
 public class Subcontrol {
 	
 	public static ArrayList<Controller> controllers = new ArrayList<Controller>();
+	@SuppressWarnings("unused")
 	private Main main;
 	public static Scene ALWAYS_DRAW_SCENE = new Scene("AlwaysDraw");
 	

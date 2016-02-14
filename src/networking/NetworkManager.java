@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
+import game_state.SceneManager;
 import main.Main;
 import networking.utils.Hub;
 
@@ -66,6 +67,7 @@ public class NetworkManager {
 	public NetworkManager(String host, int port) throws IOException {
 			connection = new GameClient(host, port);
 			myID = connection.getID();
+			SceneManager.setScene("Start");
 	}
 		
 	public void setMain(Main main) {
@@ -101,6 +103,20 @@ public class NetworkManager {
 				nl.newUpdateFromServer(state);
 			}
 		}
+	}
+	
+	public boolean ifNewState() {
+		boolean ifNew = false;
+		synchronized(netListeners) {
+			for (NetworkListener nl : netListeners) {
+				if (nl.ifNewState()) {
+					ifNew = true;
+					nl.setUpdatedState(state);
+				};
+			}
+		}
+		connection.send(state);
+		return ifNew;
 	}
 	
 	public static void networkSetupVariables(GameState state) {

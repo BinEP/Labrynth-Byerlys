@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 
 import javax.swing.JLabel;
 
@@ -16,13 +15,13 @@ import game_state.SceneManager;
 import networking.GameState;
 import networking.NetSetup;
 import networking.NetworkManager;
-import networking.utils.Hub;
 import shapes.BSString;
 
 public class Main extends Game {
 	
+	private static final long serialVersionUID = 1L;
+
 	private Subcontrol subScenes = new Subcontrol();
-	
 	
 	public static NetworkManager networkManager;
 	private static JLabel message = new JLabel();
@@ -59,14 +58,8 @@ public class Main extends Game {
 	@Override
 	public void moves() {
 		// TODO Auto-generated method stub
-		if(upPressed){
-			Subcontrol.RUNNER_POINTS.move(1);
-		} else if (rightPressed) {
-			Subcontrol.RUNNER_POINTS.move(2);
-		} else if (leftPressed){
-			Subcontrol.RUNNER_POINTS.move(3);
-		}
 		subScenes.update();
+		networkManager.ifNewState();
 	}
 
 	@Override

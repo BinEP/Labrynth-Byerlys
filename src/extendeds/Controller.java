@@ -1,7 +1,5 @@
 package extendeds;
 
-import java.awt.Graphics2D;
-
 import main.Main;
 import game_actions.Scene;
 

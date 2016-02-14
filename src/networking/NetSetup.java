@@ -6,8 +6,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-
-import main.Main;
 import utility_classes.ScanNetwork;
 
 import java.io.IOException;
@@ -31,7 +29,7 @@ import networking.utils.*;
 public class NetSetup {
 
     private static final int DEFAULT_PORT = 45017;
-    private final static int CHAT_PORT = 37829;
+//    private final static int CHAT_PORT = 37829;
     
     public static NetworkManager setupNetwork() {
         

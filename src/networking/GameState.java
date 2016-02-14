@@ -20,6 +20,11 @@ public class GameState implements Serializable {
 	// -------------- state variables recording the state of the game
 	// -------------------
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// public boolean playerDisconnected; // This is true if one of the two
 	// players has left the game
 	// // The new state, with this value set to true, is sent to
