@@ -32,7 +32,7 @@ public class ScreenButtons extends Controller {
 	public BSRectangle thirdButton = new BSRectangle (680, 420, 60, 60);
 	public BSRectangle fourthButton = new BSRectangle (740, 420, 60, 60);
 	
-	public BSRectangle bananaStem = new BSRectangle(560 + 27, 433, 5, 7);
+	public BSRectangle bananaStem = new BSRectangle(560 + 28, 434, 5, 7);
 	public int[] bananaX = 
 		{560 + 12, 560 + 22, 560 + 30, 560 + 38, 560 + 48, 560 + 42, 560 + 32, 560 + 27, 560 + 18, 560 + 12};
 	public int[] bananaY = 
@@ -40,22 +40,34 @@ public class ScreenButtons extends Controller {
 	public BSPolygon bananaPeel = new BSPolygon(bananaX, bananaY, bananaX.length);
 	public BSCompound banana;
 	
-	public BSCircle bombBody = new BSCircle(650, 465, 20);
-	public BSRectangle bombFuse = new BSRectangle(649, 435, 2, 10);
+	public BSCircle bombBody = new BSCircle(640, 449, 20);
+	public BSRectangle bombFuse = new BSRectangle(649, 440, 2, 10);
 	public int[] bombFireX = {649, 651, 660, 654, 650, 646, 640, 649};
-	public int[] bombFireY = {435, 435, 425, 428, 421, 428, 425, 435};
+	public int[] bombFireY = {440, 440, 430, 433, 426, 433, 430, 440};
 	public BSPolygon bombFire = new BSPolygon(bombFireX, bombFireY, bombFireX.length);
 	public BSCompound bomb;
 	
-	public BSRectangle arrowBody =  new BSRectangle(690, 440, 15, 10);
-	public int[] arrowHeadX = {705, 720, 705, 705};
-	public int[] arrowHeadY = {435, 445, 455, 435};
+	public BSRectangle arrowBody =  new BSRectangle(695, 445, 15, 10);
+	public int[] arrowHeadX = {710, 725, 710, 710};
+	public int[] arrowHeadY = {440, 450, 460, 440};
 	public BSPolygon arrowHead = new BSPolygon(arrowHeadX, arrowHeadY, 4);
 	public BSCompound arrow;
 	
+	public BSCircle ghostHead = new BSCircle(754, 430, 29);
+	public BSRectangle ghostBody = new BSRectangle (755, 445, 30, 25);
+	public BSCircle ghostLeftEye = new BSCircle (760, 440, 5);
+	public BSCircle ghostRightEye = new BSCircle (770, 440, 5);
+	
+	public BSCircle puddleA = new BSCircle(630, 430, 20);
+	public BSCircle puddleB = new BSCircle(640, 445, 30);
+	public BSCircle puddleC = new BSCircle(645, 455, 20);
+	
+	public BSRectangle hammerHead = new BSRectangle(700, 430, 20, 10);
+	public BSRectangle hammerHandle = new BSRectangle(705, 440, 10, 30);
+	
 	public ScreenButtons(Subcontrol control){
 		super(control);
-		Subcontrol.controllers.add(this);
+		//Subcontrol.controllers.add(this);
 		bananaStem.setColor(Color.GREEN);
 		bananaPeel.setColor(Color.YELLOW);
 		banana = new BSCompound (bananaStem, bananaPeel);
@@ -68,6 +80,19 @@ public class ScreenButtons extends Controller {
 		arrowBody.setColor(Color.ORANGE);
 		arrowHead.setColor(Color.ORANGE);
 		arrow = new BSCompound(arrowBody, arrowHead);
+		
+		ghostHead.setColor(Color.WHITE);
+		ghostBody.setColor(Color.WHITE);
+		ghostLeftEye.setColor(Color.BLACK);
+		ghostRightEye.setColor(Color.BLACK);
+		
+		puddleA.setColor(Color.BLUE);
+		puddleB.setColor(Color.BLUE);
+		puddleC.setColor(Color.BLUE);
+		
+		hammerHead.setColor(Color.DARK_GRAY);
+		hammerHandle.setColor(Color.BLACK);
+		
 	}
 	
 	
@@ -113,15 +138,18 @@ public class ScreenButtons extends Controller {
 	}
 	
 	public void second(){
-		button = Button.BOMB;
+		if(main.role.role){
+			button = Button.BOMB;
+		}
 	}
 	
 	public void third(){
-		
 	}
 	
 	public void fourth(){
-		button = Button.GHOST;
+		if(main.role.role){
+			button = Button.GHOST;
+		}
 	}
 
 	@Override
@@ -145,10 +173,24 @@ public class ScreenButtons extends Controller {
 		secondButton.autoDraw(g);
 		thirdButton.autoDraw(g);
 		fourthButton.autoDraw(g);
+		bananaStem.autoDraw(g);
+		bananaPeel.autoDraw(g);
 		if(main.role.role){
-			banana.autoDraw(g);
-			bomb.autoDraw(g);
-			arrow.autoDraw(g);
+			bombBody.autoDraw(g);
+			bombFuse.autoDraw(g);
+			bombFire.autoDraw(g);
+			arrowHead.autoDraw(g);
+			arrowBody.autoDraw(g);
+			ghostHead.autoDraw(g);
+			ghostBody.autoDraw(g);
+			ghostLeftEye.autoDraw(g);
+			ghostRightEye.autoDraw(g);
+		} else {
+			puddleA.autoDraw(g);
+			puddleB.autoDraw(g);
+			puddleC.autoDraw(g);
+			hammerHead.autoDraw(g);
+			hammerHandle.autoDraw(g);
 		}
 		
 	}
