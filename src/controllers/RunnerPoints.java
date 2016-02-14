@@ -151,6 +151,8 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 		if (subController.MAZE.map[runner.y + deltaY][runner.x + deltaX] == OPEN) {
 			runner.x += deltaX;
 			runner.y += deltaY;
+			subController.MAZE.runnerVision.x += deltaX * subController.MAZE.tileSize;
+			subController.MAZE.runnerVision.y += deltaY * subController.MAZE.tileSize;
 		}
 		return MovementError.noError;
 	}

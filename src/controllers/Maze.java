@@ -80,6 +80,7 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	@Override
 	public void drawPlaying(Graphics2D g) {
@@ -87,13 +88,17 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 //		mapSize.setColor(Color.WHITE);
 //		mapSize.autoDraw(g);
 		
+	BSRectangle background = new BSRectangle(0, 0, 800, 480);
+	background.setColor(Color.DARK_GRAY);
+	background.autoDraw(g);
+		
 	for (int i = 0; i < map.length; i++){
 		for (int j = 0; j < map[i].length; j++){
 			BSRectangle square = new BSRectangle(xStartCoord + tileSize * j, tileSize * i, tileSize, tileSize);
 			square.setColor(Color.WHITE);
 
 			if ((map[i][j] == 0 && runnerVision.intersects(square.getBounds2D())) || !main.role.role) {
-				square.setColor(Color.BLACK);
+				square.setColor(Color.GRAY);
 			}
 			
 			square.autoDraw(g);
