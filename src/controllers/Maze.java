@@ -42,6 +42,9 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 	
 	public int[][] map = origMap.clone();
 	
+	int location = (int)(Math.random() * 5);
+	int[][] locations = {{5, 0}, {0, 3}, {0, 9}, {4, 9}, {8, 7}};
+	
 	
 	public BSRectangle runnerVision = new BSRectangle(xStartCoord - 25, 335, tileSize * 3, tileSize * 3);
 	
@@ -73,6 +76,10 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
+		map[locations[location][0]][locations[location][1]] = 5;
+		System.out.println(locations[location][0] + " " + locations[location][1]);
+		
+		
 		
 //		controller.addShapeToBeDrawn(mapSize);
 		
@@ -124,19 +131,24 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 
 			if (state.map[i][j] == 0 && (state.runnerVision.intersects(square.getBounds2D()) || !main.role.role)) {
 				square.setColor(Color.GRAY);
-				square.autoDraw(g);
+			} else if (state.map[i][j] == 5 && state.runnerVision.intersects(square.getBounds2D())){
+				square.setColor(Color.RED);
 			} else if (state.map[i][j] == 2) {
 				bananaStem.autoDraw(g);
 				bananaPeel.autoDraw(g);
+				square.setColor(Color.WHITE);
 			} else if (state.map[i][j] == 3) {
 				puddleA.autoDraw(g);
 				puddleB.autoDraw(g);
 				puddleC.autoDraw(g);
-			} else {
 				square.setColor(Color.WHITE);
-				square.autoDraw(g);
-			}
+			} 
+			
+			square.autoDraw(g);
+			
 		}
+		
+		
 	}
 		
 		
