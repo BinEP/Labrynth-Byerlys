@@ -24,6 +24,9 @@ public class NetworkManager {
 	public static boolean sent = false;
 	public static boolean received = false;
 	
+	public static int lastMessageIdNum = -1;
+	
+	
 	/**
 	 * The state of the game. This state is a copy of the official state, which
 	 * is stored on the server. When the state changes, the state is sent as a
@@ -36,7 +39,7 @@ public class NetworkManager {
 	 */
 	private NetGameState state;
 	private long prevMillis;
-
+	
 	private int myID; // The ID number that identifies the player using this
 //	public boolean cheat = true; // window.
 
@@ -44,7 +47,7 @@ public class NetworkManager {
 //	private Font customFont;
 //	private static final String Font_File_Name = "joystix";
 
-	private GameClient connection; // The Client object for sending and
+	public GameClient connection; // The Client object for sending and
 										// receiving
 										// network messages.
 	
@@ -103,10 +106,13 @@ public class NetworkManager {
 	}
 	
 	public static void messageReceived(NetGameState state) {
-		received = true;
-		synchronized(netListeners) {
-			for (NetworkListener nl : netListeners) {
-				nl.newUpdateFromServer(state);
+		if (state.messageIdNum > lastMessageIdNum) {
+			
+			received = true;
+			synchronized(netListeners) {
+				for (NetworkListener nl : netListeners) {
+					nl.newUpdateFromServer(state);
+				}
 			}
 		}
 	}
@@ -122,6 +128,9 @@ public class NetworkManager {
 //			}
 //		}
 		main.subScenes.state.fromWho = main.role.role;
+		main.subScenes.state.messageIdNum++;
+		lastMessageIdNum = main.subScenes.state.messageIdNum;
+		
 		connection.send(main.subScenes.state);
 		sent = true;
 		return ifNew;

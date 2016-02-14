@@ -86,6 +86,8 @@ public class NetGameState implements Serializable {
 	public String[] messageFromServer = {" ", " "};
 	public boolean netGame = true;
 	
+	public int messageIdNum = 0;
+	
 	public BSRectangle runnerVision = new BSRectangle(xStartCoord - 25, 335, tileSize * 3, tileSize * 3);;
 	public int[][] map = {{0, 1, 1, 0, 0, 0, 1, 0, 0, 0}, 
 			{0, 0, 0, 1, 1, 0, 1, 0, 1, 1}, 
