@@ -48,7 +48,7 @@ public class Subcontrol {
 			}
 			switch (state.button)  {
 			case "Banana" :
-				MAZE.buttonPress(state.button, state.x, state.y);
+				RUNNER_POINTS.pickUpBanana(state.x, state.y);
 				break;
 			case "Bomb" :
 				RUNNER_POINTS.c4(state.y, state.x);
@@ -60,7 +60,20 @@ public class Subcontrol {
 			}
 		} else {
 			//Builder Things
-			
+			switch (state.button)  {
+			case "Banana" :
+				MAZE.buttonPress(state.button, state.y, state.x);
+				break;
+			case "Hammer" :
+				BUILDER_POINTS.buildSection(state.y, state.x);
+				break;
+			case "Trashcan" :
+				BUILDER_POINTS.removeSection(state.y, state.x);
+				break;
+			case "AppleSauce" :
+				BUILDER_POINTS.spillAppleSauce(state.y, state.x);
+				
+			}
 			
 		}
 	}
