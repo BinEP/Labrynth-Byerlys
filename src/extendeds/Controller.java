@@ -2,11 +2,13 @@ package extendeds;
 
 import java.awt.Graphics2D;
 
+import main.Main;
 import game_actions.Scene;
 
 public abstract class Controller {
 	
 	public Scene controller = new Scene();
+	public Main main;
 	
 	public static void main(String[] args) {
 

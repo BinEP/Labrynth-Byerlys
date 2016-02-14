@@ -3,6 +3,7 @@ package extendeds;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import main.Main;
 import controllers.BuilderPoints;
 import controllers.Maze;
 import controllers.NetworkController;
@@ -13,6 +14,7 @@ import shapes.interfaces.BSShape;
 public class Subcontrol {
 	
 	public ArrayList<Controller> controllers = new ArrayList<Controller>();
+	private Main main;
 	public static Scene ALWAYS_DRAW_SCENE = new Scene("AlwaysDraw");
 	
 	public static final BuilderPoints BUILDER_POINTS = new BuilderPoints();
@@ -63,9 +65,11 @@ public class Subcontrol {
 		}
 	}
 
-	public void setup() {
+	public void setup(Main main) {
+		this.main = main;
 		// TODO Auto-generated method stub
 		for (Controller c : controllers) {
+			c.main = main;
 			c.setup();
 		}
 	}
