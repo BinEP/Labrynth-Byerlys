@@ -41,11 +41,11 @@ public class Subcontrol {
 	
 	public void updateState(NetGameState state, boolean fromWho) {
 		if (fromWho) {
+			//Runner things
 			this.state = state;
 			for (Controller c : controllers) {
 				c.state = state;
 			}
-		} else {
 			switch (state.button)  {
 			case "Banana" :
 				MAZE.buttonPress(state.button, state.x, state.y);
@@ -58,6 +58,9 @@ public class Subcontrol {
 				break;
 			
 			}
+		} else {
+			//Builder Things
+			
 			
 		}
 	}
