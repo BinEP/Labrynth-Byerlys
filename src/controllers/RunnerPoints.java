@@ -25,8 +25,9 @@ public class RunnerPoints extends Controller {
     public int hideTimeout = 0;
     public int suspendTimeout = 0;
     
-    public int ticks = 10;
     public int ticksMin = 10;
+    public int ticks = ticksMin;
+
     
     public enum MovementError {
     	noPoints, nothingThere, outOfBounds, wall, appleSauce, banana, noError, tooFast
