@@ -31,7 +31,7 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
     public int hideTimeout = 0;
     public int suspendTimeout = 0;
     
-    public int ticksMin = 20;
+    public int ticksMin = 10;
     public int ticks = ticksMin;
 
     public boolean moved = false;
@@ -167,7 +167,8 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 			suspended = true;
 		}
 		System.out.println("Should Move");
-		if (state.map[state.runner.y + deltaY][state.runner.x + deltaX] == OPEN) {
+		if (state.map[state.runner.y + deltaY][state.runner.x + deltaX] == OPEN ||
+				state.map[state.runner.y + deltaY][state.runner.x + deltaX] == 5) {
 			state.runner.x += deltaX;
 			state.runner.y += deltaY;
 			state.runnerVision.x += deltaX * subController.MAZE.tileSize;
@@ -222,7 +223,8 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 	@Override
 	public boolean shouldEndGame() {
 		// TODO Auto - generated method stub
-		return false;
+		System.out.println(subController.MAZE.map[runner.y][runner.x] == 5);
+		return subController.MAZE.map[runner.y][runner.x] == 5;
 	}
 
 	@Override
