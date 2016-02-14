@@ -1,6 +1,7 @@
 package controllers;
 
 import extendeds.Controller;
+import extendeds.Subcontrol;
 
 public class RunnerPoints extends Controller {
     /*
@@ -32,17 +33,17 @@ public class RunnerPoints extends Controller {
 	    if (RunnerPoints.suspended == true){
 	        RunnerPoints.suspendTimeout--;
 	        if (RunnerPoints.suspendTimeout < 0){
-	            RunnerPoints.suspended == false;
+	            RunnerPoints.suspended = false;
 	        }
 	    }
 	}
 	
 	public int pickUpBanana(int yLocation, int xLocation){
 		if (RunnerPoints.points == 0) return 1; //f not enough points, returns 1
-		if (Subcontrol.MAZE[yLocation][xLocation] == 0) return 2; //if there is nothing in position, returns 2
-		if (Subcontrol.MAZE[yLocation][xLocation] == 1) return 3; //if there is a wall in positon, return 3
-		if (Subcontrol.MAZE[yLocation][xLocation] == 3) return 4; //if there is apple sauce in postion return 4
-		Subcontrol.MAZE[yLocation][xLocation] = 0; //sets map location with banana to "free"
+		if (Subcontrol.MAZE.map[yLocation][xLocation] == 0) return 2; //if there is nothing in position, returns 2
+		if (Subcontrol.MAZE.map[yLocation][xLocation] == 1) return 3; //if there is a wall in positon, return 3
+		if (Subcontrol.MAZE.map[yLocation][xLocation] == 3) return 4; //if there is apple sauce in postion return 4
+		Subcontrol.MAZE.map[yLocation][xLocation] = 0; //sets map location with banana to "free"
 		RunnerPoints.points--; //deducts 1 point
 		return 0;
 	}
@@ -54,47 +55,47 @@ public class RunnerPoints extends Controller {
 		if (RunnerPoints.yLocation == 9 && direction == 3) return 5; // out of bounds
 		if (RunnerPoints.yLocation == 0 && direction == 1) return 5; //out of bounds
 		if (direction == 1) {
-			if (Subcontrol.MAZE[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 1) return 3; //if there is a wall in postion return 3.
-			if (Subcontrol.MAZE[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 3) return 4; //if there is apple sauce in position return 4
-			if (Subcontrol.MAZE[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 2){
-				Subcontrol.MAZE[RunnerPoints.yLocation-1][RunnerPoints.xLocation] = 0;
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 1) return 3; //if there is a wall in postion return 3.
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 3) return 4; //if there is apple sauce in position return 4
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 2){
+				Subcontrol.MAZE.map[RunnerPoints.yLocation-1][RunnerPoints.xLocation] = 0;
 				RunnerPoints.suspended = true;
 			}
-			if (Subcontrol.MAZE[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 0){
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation-1][RunnerPoints.xLocation] == 0){
 				RunnerPoints.yLocation--;
 			}
 		}
 		else if (direction == 2) {
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 1) return 3; //if there is a wall in postion return 3.
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 3) return 4; //if there is apple sauce in position return 4
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 2){
-				Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation+1] = 0;
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 1) return 3; //if there is a wall in postion return 3.
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 3) return 4; //if there is apple sauce in position return 4
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 2){
+				Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation+1] = 0;
 				RunnerPoints.suspended = true;
 			}
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 0){
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation+1] == 0){
 				RunnerPoints.xLocation++;
 			}
 		}
 		else if (direction == 3) {
-			if (Subcontrol.MAZE[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 1) return 3; //if there is a wall in postion return 3.
-			if (Subcontrol.MAZE[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 3) return 4; //if there is apple sauce in position return 4
-			if (Subcontrol.MAZE[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 2){
-				Subcontrol.MAZE[RunnerPoints.yLocation+1][RunnerPoints.xLocation] = 0;
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 1) return 3; //if there is a wall in postion return 3.
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 3) return 4; //if there is apple sauce in position return 4
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 2){
+				Subcontrol.MAZE.map[RunnerPoints.yLocation+1][RunnerPoints.xLocation] = 0;
 				RunnerPoints.suspended = true;
 			}
-			if (Subcontrol.MAZE[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 0){
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation+1][RunnerPoints.xLocation] == 0){
 				RunnerPoints.yLocation++;
 			}
 		}
 		else if (direction == 4) {
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 1) return 3; //if there is a wall in postion return 3.
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 3) return 4; 
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 2){
-				Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation-1] = 0;
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 1) return 3; //if there is a wall in postion return 3.
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 3) return 4; 
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 2){
+				Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation-1] = 0;
 				RunnerPoints.suspended = true;
 				RunnerPoints.suspendTimeout = 1;
 			}
-			if (Subcontrol.MAZE[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 0){
+			if (Subcontrol.MAZE.map[RunnerPoints.yLocation][RunnerPoints.xLocation-1] == 0){
 				RunnerPoints.xLocation--;
 			}
 		}
@@ -104,11 +105,11 @@ public class RunnerPoints extends Controller {
 
 
 	public int c4(int yLocation, int xLocation){
-		if (Subcontrol.MAZE[yLocation][xLocation] == 3) return 4;//if there is apple sauce in position return 4
-		if (Subcontrol.MAZE[yLocation][xLocation] == 2) return 7; //if there is banana in position return 7
-		if (Subcontrol.MAZE[yLocation][xLocation] == 0) return 2; //if there is nothing in postion return 2
-		if (Subcontrol.MAZE[yLocation][xLocation] == 1) {
-			Subcontrol.MAZE[yLocation][xLocation] = 0;
+		if (Subcontrol.MAZE.map[yLocation][xLocation] == 3) return 4;//if there is apple sauce in position return 4
+		if (Subcontrol.MAZE.map[yLocation][xLocation] == 2) return 7; //if there is banana in position return 7
+		if (Subcontrol.MAZE.map[yLocation][xLocation] == 0) return 2; //if there is nothing in postion return 2
+		if (Subcontrol.MAZE.map[yLocation][xLocation] == 1) {
+			Subcontrol.MAZE.map[yLocation][xLocation] = 0;
 			RunnerPoints.points = RunnerPoints.points-3;
 			
 		}
@@ -119,11 +120,11 @@ public class RunnerPoints extends Controller {
 		if (RunnerPoints.points < 10) return 1;
 		RunnerPoints.points = (RunnerPoints.points)-10;
 		RunnerPoints.hidden = true;
-		RunnerPoints.hidetimeout = 2;
+		RunnerPoints.hideTimeout = 2;
 		return 0;
 	}
 
-}
+
 
 
 

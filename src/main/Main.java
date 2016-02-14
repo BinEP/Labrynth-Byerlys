@@ -59,6 +59,13 @@ public class Main extends Game {
 	@Override
 	public void moves() {
 		// TODO Auto-generated method stub
+		if(upPressed){
+			Subcontrol.RUNNER_POINTS.move(1);
+		} else if (rightPressed) {
+			Subcontrol.RUNNER_POINTS.move(2);
+		} else if (leftPressed){
+			Subcontrol.RUNNER_POINTS.move(3);
+		}
 		subScenes.update();
 	}
 
@@ -89,7 +96,7 @@ public class Main extends Game {
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
-		subScenes.setup();
+		subScenes.setup(this);
 		networkManager.setMain(this);
 	}
 
