@@ -82,7 +82,10 @@ public class Main extends Game implements NetworkListener {
 	@Override
 	public boolean checkIfDead() {
 		// TODO Auto-generated method stub
-		return subScenes.checkIfDead();
+		System.out.println("Winner!");
+		System.out.println(subScenes.MAZE.map[subScenes.RUNNER_POINTS.runner.y][subScenes.RUNNER_POINTS.runner.x]);
+		return subScenes.MAZE.map[subScenes.RUNNER_POINTS.runner.y][subScenes.RUNNER_POINTS.runner.x] == 5;
+//		return subScenes.checkIfDead();
 	}
 
 	@Override
