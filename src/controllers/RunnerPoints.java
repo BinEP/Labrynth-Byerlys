@@ -25,8 +25,8 @@ public class RunnerPoints extends Controller {
     public int hideTimeout = 0;
     public int suspendTimeout = 0;
     
-    public int ticks = 100;
-    public int ticksMin = 100;
+    public int ticks = 10;
+    public int ticksMin = 10;
     
     public enum MovementError {
     	noPoints, nothingThere, outOfBounds, wall, appleSauce, banana, noError, tooFast
@@ -39,7 +39,7 @@ public class RunnerPoints extends Controller {
 	
 	public BSRectangle runner = new BSRectangle(0, subController.MAZE.map.length - 1, subController.MAZE.runnerSize, subController.MAZE.runnerSize);
 	
-	public RunnerPoints(Subcontrol control){
+	public RunnerPoints(Subcontrol control) {
 		super(control);
 	}
 	
@@ -63,7 +63,7 @@ public class RunnerPoints extends Controller {
 	}
 
 	public MovementError move(int direction) { // 1 = up, 2 = right, 3 = down, 4 = left
-		ticks++;
+		
 		if (ticks < ticksMin) return MovementError.tooFast;
 		ticks = 0;
 		//if (points == 0) return MovementError.noPoints;
@@ -170,7 +170,8 @@ public class RunnerPoints extends Controller {
 	@Override
 	public void update() {
 		// TODO Auto - generated method stub
-		
+		System.out.println(ticks);
+		ticks++;
 		if (main.upPressed) {
 			System.out.println("Up Pressed");
 			move(1);
