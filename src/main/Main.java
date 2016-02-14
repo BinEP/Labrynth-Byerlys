@@ -21,17 +21,21 @@ public class Main extends Game {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Subcontrol subScenes = new Subcontrol();
+	private Subcontrol subScenes;
 	
 	public static NetworkManager networkManager;
 	private static JLabel message = new JLabel();
 	public static GameState STATE;
 	
-//	public Main() throws IOException {
-//		networkManager = new NetworkManager(HOST, PORT, SERVER, this);
-//	}
+	public Main()  {
+//	networkManager = new NetworkManager(HOST, PORT, SERVER, this);
+	
+		subScenes = new Subcontrol();
+
+	}
 	
 	public static void main(String[] args) {
+		
 		
 		networkManager = NetSetup.setupNetwork();
 		

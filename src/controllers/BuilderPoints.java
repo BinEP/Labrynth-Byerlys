@@ -85,7 +85,6 @@ public class BuilderPoints extends Controller {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
