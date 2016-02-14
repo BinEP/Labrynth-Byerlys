@@ -28,18 +28,24 @@ public class Main extends Game implements NetworkListener {
 
 	private Subcontrol subScenes = new Subcontrol();
 	
-	public NetworkManager networkManager = NetSetup.setupNetwork();
+	public class Role {
+		public boolean role = true;
+	}
+	public Role role = new Role();
 	
-	private static JLabel message = new JLabel();
-	public static NetGameState STATE;
+	public Main main;
 	
-	public static boolean ROLE = true;
+	public NetworkManager networkManager = NetSetup.setupNetwork(role);
 	
+	private JLabel message = new JLabel();
+	public NetGameState STATE;
+		
 	public Main()  {
 //	networkManager = new NetworkManager(HOST, PORT, SERVER, this);
 	
 //		subScenes = new Subcontrol();
 //		networkManager = nm;
+		this.main = this;
 
 	}
 	
@@ -48,7 +54,7 @@ public class Main extends Game implements NetworkListener {
 		Main main = new Main();
 		NetworkManager.addNetworkListener(main);
 		Runner runner = new Runner(main);
-		runner.add(message, BorderLayout.SOUTH);
+		runner.add(main.message, BorderLayout.SOUTH);
 		runner.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -112,8 +118,8 @@ public class Main extends Game implements NetworkListener {
 		return "Labrynth And Byerly's";
 	}
 	
-	public static void setMessageLabel(String newMessage) {
-		message.setText(newMessage);
+	public void setMessageLabel(String newMessage) {
+		main.message.setText(newMessage);
 	}
 	
 	public void endGame() {

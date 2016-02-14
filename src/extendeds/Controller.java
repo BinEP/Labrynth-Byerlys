@@ -10,6 +10,11 @@ public abstract class Controller {
 	
 	public Scene controller = new Scene();
 	public Main main;
+	public Subcontrol subController;
+	
+	public Controller(Subcontrol subC) {
+		this.subController = subC;
+	}
 	
 	public static void main(String[] args) {
 

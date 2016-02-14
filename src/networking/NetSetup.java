@@ -33,7 +33,7 @@ public class NetSetup {
     private static final int DEFAULT_PORT = 45017;
 //    private final static int CHAT_PORT = 37829;
     
-    public static NetworkManager setupNetwork() {
+    public static NetworkManager setupNetwork(Main.Role r) {
         
         // First, construct a panel that will be placed into a JOptionPane confirm dialog.
         
@@ -158,7 +158,7 @@ public class NetSetup {
 //                Hub chatHub;
                 try {
                     hub = new GameHub(port);
-                    Main.ROLE = false;
+                    r.role = false;
 //                    chatHub = new Hub(CHAT_PORT); 
                 }
                 catch (Exception e) {
