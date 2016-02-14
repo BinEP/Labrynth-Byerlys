@@ -62,6 +62,13 @@ public class Subcontrol {
 				}
 			}
 		} else {
+//			this.state = state;
+//			for (Controller c : controllers) {
+//				c.state = state;
+//			}
+			MAZE.runnerVision = state.runnerVision;
+			RUNNER_POINTS.runner = state.runner;
+			
 			//Builder Things
 			if (state.button != null) {
 
