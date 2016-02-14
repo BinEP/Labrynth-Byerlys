@@ -59,11 +59,15 @@ public class ScreenButtons extends Controller {
 	public BSCircle ghostRightEye = new BSCircle (770, 440, 5);
 	
 	public BSCircle puddleA = new BSCircle(630, 430, 20);
-	public BSCircle puddleB = new BSCircle(640, 445, 30);
-	public BSCircle puddleC = new BSCircle(645, 455, 20);
+	public BSCircle puddleB = new BSCircle(640, 438, 30);
+	public BSCircle puddleC = new BSCircle(645, 427, 20);
 	
 	public BSRectangle hammerHead = new BSRectangle(700, 430, 20, 10);
 	public BSRectangle hammerHandle = new BSRectangle(705, 440, 10, 30);
+	
+	public int[] trashCanX = {750, 765, 765, 775, 775, 790, 785, 755, 750};
+	public int[] trashCanY = {434, 434, 430, 430, 434, 434, 470, 470, 434};
+	public BSPolygon trashCan = new BSPolygon(trashCanX, trashCanY, trashCanX.length);
 	
 	public ScreenButtons(Subcontrol control){
 		super(control);
@@ -90,8 +94,10 @@ public class ScreenButtons extends Controller {
 		puddleB.setColor(Color.BLUE);
 		puddleC.setColor(Color.BLUE);
 		
-		hammerHead.setColor(Color.DARK_GRAY);
+		hammerHead.setColor(Color.GRAY);
 		hammerHandle.setColor(Color.BLACK);
+		
+		trashCan.setColor(Color.DARK_GRAY);
 		
 	}
 	
@@ -191,6 +197,7 @@ public class ScreenButtons extends Controller {
 			puddleC.autoDraw(g);
 			hammerHead.autoDraw(g);
 			hammerHandle.autoDraw(g);
+			trashCan.autoDraw(g);
 		}
 		
 	}
