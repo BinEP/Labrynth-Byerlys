@@ -61,9 +61,7 @@ public class Subcontrol {
 	}
 
 	public void drawPlaying(Graphics2D g) {
-		System.out.println("Draw playing method");
 		for (Controller c : controllers) {
-			System.out.println("Draw shapes in draw playing");
 			c.controller.drawShapes(g);
 			c.drawPlaying(g);
 		}

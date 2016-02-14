@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -94,13 +95,13 @@ public class Main extends Game implements NetworkListener {
 	@Override
 	public void drawPlaying(Graphics2D g) {
 		// TODO Auto-generated method stub
-		System.out.println("Draw Playing");
 		subScenes.drawPlaying(g);
 	}
 
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
+		this.setBackground(Color.GRAY);
 		subScenes.setup(this);
 		networkManager.setMain(this);
 	}
