@@ -106,7 +106,7 @@ public class NetworkManager {
 	}
 	
 	public static void messageReceived(NetGameState state) {
-		if (state.messageIdNum > lastMessageIdNum) {
+//		if (state.fromWho != Main.Role) {
 			
 			received = true;
 			synchronized(netListeners) {
@@ -114,7 +114,7 @@ public class NetworkManager {
 					nl.newUpdateFromServer(state);
 				}
 			}
-		}
+//		}
 	}
 	
 	public boolean ifNewState() {
@@ -127,11 +127,13 @@ public class NetworkManager {
 //				};
 //			}
 //		}
-		main.subScenes.state.fromWho = main.role.role;
-		main.subScenes.state.messageIdNum++;
-		lastMessageIdNum = main.subScenes.state.messageIdNum;
-		
-		connection.send(main.subScenes.state);
+		if (main.role.role) {
+			main.subScenes.state.fromWho = main.role.role;
+			main.subScenes.state.messageIdNum++;
+			lastMessageIdNum = main.subScenes.state.messageIdNum;
+			
+			connection.send(main.subScenes.state);
+		}
 		sent = true;
 		return ifNew;
 	}

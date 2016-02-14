@@ -147,7 +147,8 @@ public class Main extends Game implements NetworkListener {
 			GameStateManager.toPlayingBooleans();
 //			setup();
 		}
-		subScenes.updateState(state);
+		if (role.role != state.fromWho || state.messageFromServer[0].equals("newgame"))
+			subScenes.updateState(state);
 	}
 
 	@Override
