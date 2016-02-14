@@ -135,6 +135,16 @@ public class RunnerPoints extends Controller {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
+		if (main.upPressed){
+			this.move(1);
+		} else if (main.rightPressed){
+			this.move(2);
+		} else if (main.downPressed){
+			this.move(3);
+		} else if (main.leftPressed){
+			this.move(4);
+		}
 
 	}
 
