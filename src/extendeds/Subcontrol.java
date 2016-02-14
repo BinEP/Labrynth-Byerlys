@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import main.Main;
+import networking.BuilderGameState;
 import networking.NetGameState;
 import controllers.BuilderPoints;
 import controllers.Maze;
@@ -72,10 +73,11 @@ public class Subcontrol {
 				break;
 			case "AppleSauce" :
 				BUILDER_POINTS.spillAppleSauce(state.y, state.x);
-				
 			}
 			
 		}
+		BuilderGameState specialState = new BuilderGameState(state.button, state.x, state.y);
+		main.networkManager.buttonInfoNew(specialState);
 	}
 	
 	public void update() {
