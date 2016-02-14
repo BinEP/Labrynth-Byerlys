@@ -125,10 +125,10 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 			if (state.map[i][j] == 0 && (state.runnerVision.intersects(square.getBounds2D()) || !main.role.role)) {
 				square.setColor(Color.GRAY);
 				square.autoDraw(g);
-			} else if (state.map[i][j] == 2 || !main.role.role) {
+			} else if (state.map[i][j] == 2) {
 				bananaStem.autoDraw(g);
 				bananaPeel.autoDraw(g);
-			} else if (state.map[i][j] == 2 || !main.role.role) {
+			} else if (state.map[i][j] == 3) {
 				puddleA.autoDraw(g);
 				puddleB.autoDraw(g);
 				puddleC.autoDraw(g);

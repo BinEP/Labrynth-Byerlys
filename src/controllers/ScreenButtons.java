@@ -11,6 +11,7 @@ import shapes.BSCompound;
 import shapes.BSLine;
 import shapes.BSPolygon;
 import shapes.BSRectangle;
+import shapes.BSString;
 import extendeds.Controller;
 import extendeds.Subcontrol;
 
@@ -67,6 +68,10 @@ public class ScreenButtons extends Controller {
 	public BSCircle puddleB = new BSCircle(640, 438, 30);
 	public BSCircle puddleC = new BSCircle(645, 427, 20);
 	
+	public BSString runnerPoints = new BSString("" + (subController.RUNNER_POINTS.points), 80, 440);
+	public BSString builderPoints = new BSString("" + (subController.BUILDER_POINTS.points), 80, 440);
+	
+	
 	public BSRectangle hammerHead = new BSRectangle(700, 430, 20, 10);
 	public BSRectangle hammerHandle = new BSRectangle(705, 440, 10, 30);
 	
@@ -103,6 +108,9 @@ public class ScreenButtons extends Controller {
 		hammerHandle.setColor(Color.BLACK);
 		
 		trashCan.setColor(Color.DARK_GRAY);
+		
+		runnerPoints.setColor(Color.BLUE);
+		builderPoints.setColor(Color.BLUE);
 		
 	}
 	
@@ -209,6 +217,8 @@ public class ScreenButtons extends Controller {
 			ghostBody.autoDraw(g);
 			ghostLeftEye.autoDraw(g);
 			ghostRightEye.autoDraw(g);
+			runnerPoints = new BSString("" + (subController.RUNNER_POINTS.points), 80, 440);
+			runnerPoints.autoDraw(g);
 		} else {
 			puddleA.autoDraw(g);
 			puddleB.autoDraw(g);
@@ -216,6 +226,8 @@ public class ScreenButtons extends Controller {
 			hammerHead.autoDraw(g);
 			hammerHandle.autoDraw(g);
 			trashCan.autoDraw(g);
+			builderPoints = new BSString("" + (subController.BUILDER_POINTS.points), 80, 440);
+			builderPoints.autoDraw(g);
 		}
 		
 	}

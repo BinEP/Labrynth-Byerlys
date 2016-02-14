@@ -23,7 +23,7 @@ import extendeds.Subcontrol;
 
 
 public class BuilderPoints extends Controller {
-	int points;
+	int points = 30;
 	int spill[][] = new int[15][3];
 
 	public BuilderPoints(Subcontrol control){
