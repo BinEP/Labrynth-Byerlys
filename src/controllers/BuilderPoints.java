@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 
 import extendeds.Controller;
 import extendeds.Subcontrol;
+import networking.BuilderGameState;
 
 /*
 
@@ -118,12 +119,16 @@ public class BuilderPoints extends Controller {
 				if(x > 200 && x < 600 && y > 0 && y < 400){
 					x = (int)((x - 200) / 40);
 					y = (int)(y / 40);
-				} 
+				} else {
+					return;
+				}
 				state.button = subController.SCREEN_BUTTONS.buttonString;
 				state.x = x;
 				state.y = y;
 
-				subController.updateState(state, main.role.role);
+				BuilderGameState bstt = new BuilderGameState(state.button, state.x, state.y);
+				subController.updateBuildState(bstt, main.role.role);
+				main.networkManager.connection.send(bstt);
 				
 			}
 		});

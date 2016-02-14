@@ -142,11 +142,11 @@ public class NetGameState implements Serializable {
 			messageFromServer = theState.messageFromServer;
 			
 			if (fromWho) {
-				map = theState.map;
-				runner = theState.runner;
-				runnerVision = theState.runnerVision;
+				if (map != null) map = theState.map;
+				if (runner != null) runner = theState.runner;
+				if (runnerVision != null) runnerVision = theState.runnerVision;
 			}
-			
+			builderUpdate = false;
 			
 			checkIfWon();
 //			resetColors();
@@ -161,12 +161,15 @@ public class NetGameState implements Serializable {
 		} else if (message instanceof BuilderGameState) {
 			BuilderGameState theState = (BuilderGameState) message;
 			fromWho = false;
+			builderUpdate = true;
 			button = theState.button;
 			x = theState.x;
 			y = theState.y;
 		}
 	}
-
+	
+//	public BuilderGameState bstate;
+	public boolean builderUpdate = false;
 	
 	public String button;
 	public int x;

@@ -52,7 +52,6 @@ public class NetworkManager {
 										// network messages.
 	
 	
-	
 	/**
 	 * Creates and configures the window, opens a connection to the server, and
 	 * makes the widow visible on the screen. This constructor can block until
@@ -106,7 +105,7 @@ public class NetworkManager {
 	}
 	
 	public static void messageReceived(NetGameState state) {
-//		if (state.fromWho != Main.Role) {
+//		if (state.fromWho != main.role.role) {
 			
 			received = true;
 			synchronized(netListeners) {
@@ -131,16 +130,17 @@ public class NetworkManager {
 //				};
 //			}
 //		}
-//		if (main.role.role) {
+		if (main.role.role) {
 			main.subScenes.state.fromWho = main.role.role;
 			main.subScenes.state.messageIdNum++;
 			lastMessageIdNum = main.subScenes.state.messageIdNum;
 			
 			connection.send(main.subScenes.state);
-//		}
+		}
 		sent = true;
 		return ifNew;
 	}
+	
 	
 	public NetGameState getState() {
 		return state;

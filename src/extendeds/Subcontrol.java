@@ -41,33 +41,43 @@ public class Subcontrol {
 	}
 	
 	public void updateState(NetGameState state, boolean fromWho) {
-		if (fromWho) {
+		if (fromWho && !state.builderUpdate) {
 			//Runner things
 			this.state = state;
 			for (Controller c : controllers) {
 				c.state = state;
 			}
-			if (state.button != null) {
-				switch (state.button)  {
-				case "Banana" :
-					RUNNER_POINTS.pickUpBanana(state.x, state.y);
-					break;
-				case "Bomb" :
-					RUNNER_POINTS.c4(state.y, state.x);
-					break;
-				case "Ghost" :
-					RUNNER_POINTS.hide();
-					break;
-				
-				}
-			}
+			
 		} else {
 //			this.state = state;
 //			for (Controller c : controllers) {
 //				c.state = state;
 //			}
-			MAZE.runnerVision = state.runnerVision;
-			RUNNER_POINTS.runner = state.runner;
+			
+			
+		}
+		if (state.builderUpdate) updateBuildState(new BuilderGameState(state.button, state.x, state.y), fromWho);
+		
+	}
+	
+	public void updateBuildState(BuilderGameState state, boolean fromWho) {
+		if (fromWho) {
+		
+		if (state.button != null) {
+			switch (state.button)  {
+			case "Banana" :
+				RUNNER_POINTS.pickUpBanana(state.x, state.y);
+				break;
+			case "Bomb" :
+				RUNNER_POINTS.c4(state.y, state.x);
+				break;
+			case "Ghost" :
+				RUNNER_POINTS.hide();
+				break;
+			
+			}
+		}
+		} else {
 			
 			//Builder Things
 			if (state.button != null) {
@@ -86,10 +96,10 @@ public class Subcontrol {
 					BUILDER_POINTS.spillAppleSauce(state.y, state.x);
 				}
 			}
-			
 		}
-		BuilderGameState specialState = new BuilderGameState(state.button, state.x, state.y);
-		main.networkManager.buttonInfoNew(specialState);
+		
+//		BuilderGameState specialState = new BuilderGameState(state.button, state.x, state.y);
+//		main.networkManager.buttonInfoNew(specialState);
 	}
 	
 	public void update() {

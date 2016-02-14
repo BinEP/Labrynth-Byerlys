@@ -11,8 +11,8 @@ public class BuilderGameState implements Serializable {
 		this.y = y2;
 	}
 	
-	String button;
-	int x;
-	int y;
+	public String button;
+	public int x;
+	public int y;
 	
 }
