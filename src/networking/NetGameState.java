@@ -64,6 +64,13 @@ public class NetGameState implements Serializable {
 //	public ArrayList<Button> button = new ArrayList<Button>();
 //	public ArrayList<ArrayList<Card>> restOfDeck = new ArrayList<ArrayList<Card>>();
 
+	
+	public int xStartCoord = 200;
+	public int yStartCoord = 40;
+	public int tileSize = 40;
+	public int mapSide = 400;
+	public int runnerSize = 30;
+	
 	public int turn;
 
 	public boolean startGame = true;
@@ -79,9 +86,20 @@ public class NetGameState implements Serializable {
 	public String[] messageFromServer = {" ", " "};
 	public boolean netGame = true;
 	
-	public BSRectangle runner;
-	public BSRectangle runnerVision;
-	public int[][] map;
+	public BSRectangle runnerVision = new BSRectangle(xStartCoord - 25, 335, tileSize * 3, tileSize * 3);;
+	public int[][] map = {{0, 1, 1, 0, 0, 0, 1, 0, 0, 0}, 
+			{0, 0, 0, 1, 1, 0, 1, 0, 1, 1}, 
+			{0, 1, 0, 1, 1, 0, 1, 0, 1, 0}, 
+			{0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+			{0, 1, 1, 0, 1, 0, 1, 0, 1, 0}, 
+			{0, 1, 0, 0, 0, 0, 1, 0, 1, 1}, 
+			{1, 1, 0, 1, 0, 1, 1, 0, 0, 0}, 
+			{0, 0, 0, 1, 0, 0, 1, 1, 1, 0}, 
+			{0, 1, 0, 1, 1, 0, 1, 0, 1, 0}, 
+			{0, 0, 0, 1, 0, 0, 1, 0, 0, 0}};
+	
+	public BSRectangle runner = new BSRectangle(0, map.length - 1, runnerSize, runnerSize);;
+
 
 	// ----------- the method that is called by the Hub to react to messages
 	// from the players -----------
@@ -119,6 +137,12 @@ public class NetGameState implements Serializable {
 			endGame = theState.endGame;
 			won = theState.won;
 			messageFromServer = theState.messageFromServer;
+			
+			map = theState.map;
+			runner = theState.runner;
+			runnerVision = theState.runnerVision;
+			
+			
 			checkIfWon();
 //			resetColors();
 //			System.out.println(hands.toString());
@@ -226,7 +250,7 @@ public class NetGameState implements Serializable {
 //		hands.clear();
 //		restOfDeck.clear();
 //		button.clear();
-		NetworkManager.networkResetVariables(this);
+//		NetworkManager.networkResetVariables(this);
 //		turn = 1;
 		playing = true;
 		endGame = false;
@@ -234,14 +258,14 @@ public class NetGameState implements Serializable {
 		won = false;
 		
 		messageFromServer[1] = "New Game made";
-		messageFromServer[0] = "Everything Setup";
+		messageFromServer[0] = "newgame";
 		
 //		newDeck();
 //		newHands();
 //		deckPairsSetup();
 //		setUpButtons();
 		NetworkManager.networkSetupVariables(this);
-		SceneManager.setScene(0);
+//		SceneManager.setScene(0);
 
 	}
 //

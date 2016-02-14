@@ -21,6 +21,8 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 	public int mapSide = 400;
 	public int runnerSize = 30;
 	
+	public boolean moved = false;
+	
 	ArrayList<BSShape> shapes = new ArrayList<BSShape>();
 	
 //	public BSRectangle mapSize = new BSRectangle(xStartCoord, yStartCoord, mapSide, mapSide);
@@ -97,7 +99,7 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 			BSRectangle square = new BSRectangle(xStartCoord + tileSize * j, tileSize * i, tileSize, tileSize);
 			square.setColor(Color.WHITE);
 
-			if ((map[i][j] == 0 && runnerVision.intersects(square.getBounds2D())) || !main.role.role) {
+			if (state.map[i][j] == 0 && (state.runnerVision.intersects(square.getBounds2D()) || !main.role.role)) {
 				square.setColor(Color.GRAY);
 			}
 			
@@ -114,6 +116,10 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 	@Override
 	public boolean ifNewState() {
 		// TODO Auto-generated method stub
+		if (moved) {
+			moved = false;
+			return true;
+		}
 		return false;
 	}
 
@@ -121,16 +127,17 @@ public class Maze extends Controller implements NetworkListener, NetworkVariable
 	@Override
 	public void setUpdatedState(NetGameState state) {
 		// TODO Auto-generated method stub
-		state.runnerVision = runnerVision;
-		state.map = map;
+		state.runnerVision = this.state.runnerVision;
+		state.map = this.state.map;
 	}
 
 
 	@Override
 	public void newUpdateFromServer(NetGameState state) {
 		// TODO Auto-generated method stub
-		runnerVision = state.runnerVision;
-		map = state.map;
+//		runnerVision = state.runnerVision;
+//		map = state.map;
+//		this.state = state;
 	}
 	
 	@Override

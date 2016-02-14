@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import main.Main;
+import networking.NetGameState;
 import controllers.BuilderPoints;
 import controllers.Maze;
 import controllers.NetworkController;
@@ -22,6 +23,7 @@ public class Subcontrol {
 	public final Maze MAZE = new Maze(this);
 	public final NetworkController NETWORK_CONTROLLER = new NetworkController(this);
 	public final RunnerPoints RUNNER_POINTS = new RunnerPoints(this);
+	public NetGameState state;
 	
 	public Subcontrol() {
 		controllers.add(BUILDER_POINTS);
@@ -32,6 +34,13 @@ public class Subcontrol {
 	
 	public static void addShapeToAlwaysBeDrawn(BSShape shape) {
 		ALWAYS_DRAW_SCENE.addShapeToBeDrawn(shape);
+	}
+	
+	public void updateState(NetGameState state) {
+		this.state = state;
+		for (Controller c : controllers) {
+			c.state = state;
+		}
 	}
 	
 	public void update() {

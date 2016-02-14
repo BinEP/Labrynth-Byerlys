@@ -21,6 +21,8 @@ public class NetworkManager {
 //	public static int PORT;
 //	public static Hub SERVER;
 	public Main main;
+	public static boolean sent = false;
+	public static boolean received = false;
 	
 	/**
 	 * The state of the game. This state is a copy of the official state, which
@@ -99,6 +101,7 @@ public class NetworkManager {
 	}
 	
 	public static void messageReceived(NetGameState state) {
+		received = true;
 		synchronized(netListeners) {
 			for (NetworkListener nl : netListeners) {
 				nl.newUpdateFromServer(state);
@@ -116,7 +119,8 @@ public class NetworkManager {
 				};
 			}
 		}
-		connection.send(state);
+		connection.send(main.subScenes.state);
+		sent = true;
 		return ifNew;
 	}
 	

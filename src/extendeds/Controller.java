@@ -1,6 +1,7 @@
 package extendeds;
 
 import main.Main;
+import networking.NetGameState;
 
 import java.awt.Graphics2D;
 
@@ -11,6 +12,7 @@ public abstract class Controller {
 	public Scene controller = new Scene();
 	public Main main;
 	public Subcontrol subController;
+	public NetGameState state;
 	
 	public Controller(Subcontrol subC) {
 		this.subController = subC;

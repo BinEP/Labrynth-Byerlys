@@ -26,7 +26,7 @@ public class Main extends Game implements NetworkListener {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Subcontrol subScenes = new Subcontrol();
+	public Subcontrol subScenes = new Subcontrol();
 	
 	public class Role {
 		public boolean role = true;
@@ -107,7 +107,7 @@ public class Main extends Game implements NetworkListener {
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
-		this.setBackground(Color.GRAY);
+		this.setBackground(Color.DARK_GRAY);
 		subScenes.setup(this);
 		networkManager.setMain(this);
 	}
@@ -144,10 +144,11 @@ public class Main extends Game implements NetworkListener {
 	@Override
 	public void newUpdateFromServer(NetGameState state) {
 		// TODO Auto-generated method stub
-		if (state.playing)  {
+		if (state.messageFromServer[0].equals("newgame"))  {
 			GameStateManager.toPlayingBooleans();
-			setup();
+//			setup();
 		}
+		subScenes.updateState(state);
 	}
 
 	@Override
