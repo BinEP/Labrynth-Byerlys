@@ -3,9 +3,24 @@ package controllers;
 import extendeds.Controller;
 import extendeds.Subcontrol;
 
+/*
+
+****ERROR CODES****
+11       Attempt to remove wall from where there is no wall
+12       Attempt to put banana peel/build section on wall
+13       Attempt to put section on apple peel/banana
+14       Attempt to put banana peel on banana peel
+15       Attempt to put banana peel on apple sauce
+16       Attempt to spill apple sauce on apple sauce
+17       Attempt to spill apple sauce on wall
+18       Attempt to spill apple sauce on banana
+
+*/
+
+
 public class BuilderPoints extends Controller {
 	static int points;
-	static int spill[][][] = new int[10][3];
+	static int spill[][] = new int[15][3];
 
 
 	public int spillAppleSauce(int yLoc, int xLoc){
@@ -24,7 +39,7 @@ public class BuilderPoints extends Controller {
 	}
 
 	public void timeouts(){
-	    for(int i = 0; i<10; i++){
+	    for(int i = 0; i<15; i++){
 	    	if (BuilderPoints.spill[i][0] == 1){
 	    		BuilderPoints.spill[i][0] = 0;
 	    		Subcontrol.MAZE.map[BuilderPoints.spill[i][1]][BuilderPoints.spill[i][2]] = 0;
