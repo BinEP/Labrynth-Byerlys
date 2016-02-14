@@ -28,24 +28,7 @@ public class BuilderPoints extends Controller {
 
 	public BuilderPoints(Subcontrol control){
 		super(control);
-		main.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				int x = e.getX();
-				int y = e.getY();
-				if(x > 200 && x < 600 && y > 0 && y < 400){
-					x = (int)((x - 200) / 40);
-					y = (int)(y / 40);
-				} 
-				state.button = subController.SCREEN_BUTTONS.buttonString;
-				state.x = x;
-				state.y = y;
-
-				subController.updateState(state, main.role.role);
-				
-			}
-		});
+		
 	}
 
 	public int spillAppleSauce(int yLoc, int xLoc){
@@ -126,7 +109,24 @@ public class BuilderPoints extends Controller {
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
+		main.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				int x = e.getX();
+				int y = e.getY();
+				if(x > 200 && x < 600 && y > 0 && y < 400){
+					x = (int)((x - 200) / 40);
+					y = (int)(y / 40);
+				} 
+				state.button = subController.SCREEN_BUTTONS.buttonString;
+				state.x = x;
+				state.y = y;
 
+				subController.updateState(state, main.role.role);
+				
+			}
+		});
 	}
 
 	@Override

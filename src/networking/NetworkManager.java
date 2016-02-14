@@ -131,13 +131,13 @@ public class NetworkManager {
 //				};
 //			}
 //		}
-		if (main.role.role) {
+//		if (main.role.role) {
 			main.subScenes.state.fromWho = main.role.role;
 			main.subScenes.state.messageIdNum++;
 			lastMessageIdNum = main.subScenes.state.messageIdNum;
 			
 			connection.send(main.subScenes.state);
-		}
+//		}
 		sent = true;
 		return ifNew;
 	}

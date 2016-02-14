@@ -47,32 +47,37 @@ public class Subcontrol {
 			for (Controller c : controllers) {
 				c.state = state;
 			}
-			switch (state.button)  {
-			case "Banana" :
-				RUNNER_POINTS.pickUpBanana(state.x, state.y);
-				break;
-			case "Bomb" :
-				RUNNER_POINTS.c4(state.y, state.x);
-				break;
-			case "Ghost" :
-				RUNNER_POINTS.hide();
-				break;
-			
+			if (state.button != null) {
+				switch (state.button)  {
+				case "Banana" :
+					RUNNER_POINTS.pickUpBanana(state.x, state.y);
+					break;
+				case "Bomb" :
+					RUNNER_POINTS.c4(state.y, state.x);
+					break;
+				case "Ghost" :
+					RUNNER_POINTS.hide();
+					break;
+				
+				}
 			}
 		} else {
 			//Builder Things
-			switch (state.button)  {
-			case "Banana" :
-				MAZE.buttonPress(state.button, state.y, state.x);
-				break;
-			case "Hammer" :
-				BUILDER_POINTS.buildSection(state.y, state.x);
-				break;
-			case "Trashcan" :
-				BUILDER_POINTS.removeSection(state.y, state.x);
-				break;
-			case "AppleSauce" :
-				BUILDER_POINTS.spillAppleSauce(state.y, state.x);
+			if (state.button != null) {
+
+				switch (state.button)  {
+				case "Banana" :
+					MAZE.buttonPress(state.button, state.y, state.x);
+					break;
+				case "Hammer" :
+					BUILDER_POINTS.buildSection(state.y, state.x);
+					break;
+				case "Trashcan" :
+					BUILDER_POINTS.removeSection(state.y, state.x);
+					break;
+				case "AppleSauce" :
+					BUILDER_POINTS.spillAppleSauce(state.y, state.x);
+				}
 			}
 			
 		}
