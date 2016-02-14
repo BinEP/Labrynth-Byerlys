@@ -57,6 +57,7 @@ public class BuilderPoints extends Controller {
 		if (Subcontrol.MAZE.map[yLocation][xLocation] != 1) return 11;
 		Subcontrol.MAZE.map[yLocation][xLocation] = 0;
 		BuilderPoints.points++;
+		return 0;
 	}
 
 	public int buildSection(int yLocation, int xLocation){
@@ -106,8 +107,3 @@ public class BuilderPoints extends Controller {
 	}
 }
 
-private class AppleSauce{
-	static int timeRemaining;
-	static int yLocation;
-	static int xLocation;
-}
