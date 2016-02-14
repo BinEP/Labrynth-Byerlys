@@ -94,15 +94,7 @@ public class ScreenButtons extends Controller {
 	public void setup() {
 		// TODO Auto-generated method stub
 		
-		controller.addShapeToBeDrawn(exitButton);
-		controller.addShapeToBeDrawn(firstButton);
-		controller.addShapeToBeDrawn(secondButton);
-		controller.addShapeToBeDrawn(thirdButton);
-		controller.addShapeToBeDrawn(fourthButton);
-		controller.addShapeToBeDrawn(banana);
-		controller.addShapeToBeDrawn(bomb);
-		controller.addShapeToBeDrawn(arrow);
-		//controller.addShapeToBeDrawn();
+	
 		
 		ObjectListenerManager.addAction(ObjectListenerManager.MOUSE_CLICKED, exitButton, this, "exit");
 		ObjectListenerManager.addAction(ObjectListenerManager.MOUSE_CLICKED, firstButton, this, "first");
@@ -141,6 +133,23 @@ public class ScreenButtons extends Controller {
 	@Override
 	public void drawPlaying(Graphics2D g) {
 		// TODO Auto-generated method stub
+		
+		exitButton.setColor(Color.GRAY);
+		firstButton.setColor(Color.WHITE);
+		secondButton.setColor(Color.GRAY);
+		thirdButton.setColor(Color.WHITE);
+		fourthButton.setColor(Color.GRAY);
+		
+		exitButton.autoDraw(g);
+		firstButton.autoDraw(g);
+		secondButton.autoDraw(g);
+		thirdButton.autoDraw(g);
+		fourthButton.autoDraw(g);
+		if(main.role.role){
+			banana.autoDraw(g);
+			bomb.autoDraw(g);
+			arrow.autoDraw(g);
+		}
 		
 	}
 
