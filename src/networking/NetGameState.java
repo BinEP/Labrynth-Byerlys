@@ -122,7 +122,7 @@ public class NetGameState implements Serializable {
 	public void applyMessage(int sender, Object message) {
 		
 		if (message instanceof NetGameState) {
-
+			fromWho = true;
 			NetGameState theState = (NetGameState) message;
 
 //			playerNumOfCards = theState.playerNumOfCards;

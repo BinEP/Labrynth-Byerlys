@@ -41,7 +41,7 @@ public class Subcontrol {
 	}
 	
 	public void updateState(NetGameState state, boolean fromWho) {
-		if (fromWho && !state.builderUpdate) {
+		if (fromWho) {
 			//Runner things
 			this.state = state;
 			for (Controller c : controllers) {
