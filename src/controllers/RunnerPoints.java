@@ -72,13 +72,13 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 
 	public MovementError move(int direction) { // 1 = up, 2 = right, 3 = down, 4 = left
 		
-		if (!(main.networkManager.sent && main.networkManager.received) || !(!main.networkManager.sent && !main.networkManager.received)) {
-			main.networkManager.sent = false;
-			main.networkManager.received = false;
+//		if (!(main.networkManager.sent && main.networkManager.received) || !(!main.networkManager.sent && !main.networkManager.received)) {
+//			main.networkManager.sent = false;
+//			main.networkManager.received = false;
 			if (ticks < ticksMin) {
 				return MovementError.tooFast;
 			}
-		}
+//		}
 		
 		ticks = 0;
 		

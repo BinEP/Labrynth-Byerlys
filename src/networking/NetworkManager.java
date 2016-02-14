@@ -35,6 +35,7 @@ public class NetworkManager {
 	 * TicTacToeClient object.
 	 */
 	private NetGameState state;
+	private long prevMillis;
 
 	private int myID; // The ID number that identifies the player using this
 //	public boolean cheat = true; // window.
@@ -70,6 +71,7 @@ public class NetworkManager {
 			connection = new GameClient(host, port);
 			myID = connection.getID();
 			state = new NetGameState();
+			prevMillis = System.currentTimeMillis();
 //			SceneManager.setScene("Start");
 	}
 		
@@ -111,14 +113,15 @@ public class NetworkManager {
 	
 	public boolean ifNewState() {
 		boolean ifNew = false;
-		synchronized(netListeners) {
-			for (NetworkListener nl : netListeners) {
-				if (nl.ifNewState()) {
-					ifNew = true;
-					nl.setUpdatedState(state);
-				};
-			}
-		}
+//		synchronized(netListeners) {
+//			for (NetworkListener nl : netListeners) {
+//				if (nl.ifNewState()) {
+//					ifNew = true;
+//					nl.setUpdatedState(state);
+//				};
+//			}
+//		}
+		main.subScenes.state.fromWho = main.role.role;
 		connection.send(main.subScenes.state);
 		sent = true;
 		return ifNew;

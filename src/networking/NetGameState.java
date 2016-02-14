@@ -100,6 +100,7 @@ public class NetGameState implements Serializable {
 	
 	public BSRectangle runner = new BSRectangle(0, map.length - 1, runnerSize, runnerSize);;
 
+	public boolean fromWho = true;
 
 	// ----------- the method that is called by the Hub to react to messages
 	// from the players -----------
@@ -138,9 +139,11 @@ public class NetGameState implements Serializable {
 			won = theState.won;
 			messageFromServer = theState.messageFromServer;
 			
-			map = theState.map;
-			runner = theState.runner;
-			runnerVision = theState.runnerVision;
+			if (fromWho) {
+				map = theState.map;
+				runner = theState.runner;
+				runnerVision = theState.runnerVision;
+			}
 			
 			
 			checkIfWon();

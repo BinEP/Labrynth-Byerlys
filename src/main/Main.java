@@ -38,7 +38,6 @@ public class Main extends Game implements NetworkListener {
 	public NetworkManager networkManager = NetSetup.setupNetwork(role);
 	
 	private JLabel message = new JLabel();
-	public NetGameState STATE;
 		
 	public Main()  {
 //	networkManager = new NetworkManager(HOST, PORT, SERVER, this);
