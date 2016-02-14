@@ -3,6 +3,7 @@ package networking;
 import java.io.Serializable;
 
 import game_state.SceneManager;
+import shapes.BSRectangle;
 
 /**
  * This class holds all the necessary information to represent the state of a
@@ -72,11 +73,15 @@ public class NetGameState implements Serializable {
 	public int winner;
 	public boolean won = false;
 
-	public int[] playerNumOfCards;
+//	public int[] playerNumOfCards;
 //	public Winner playerWon;
 	public boolean playerDisconnected;
 	public String[] messageFromServer = {" ", " "};
 	public boolean netGame = true;
+	
+	public BSRectangle runner;
+	public BSRectangle runnerVision;
+	public int[][] map;
 
 	// ----------- the method that is called by the Hub to react to messages
 	// from the players -----------
@@ -99,7 +104,7 @@ public class NetGameState implements Serializable {
 
 			NetGameState theState = (NetGameState) message;
 
-			playerNumOfCards = theState.playerNumOfCards;
+//			playerNumOfCards = theState.playerNumOfCards;
 //			deck = theState.deck;
 			turn = theState.turn;
 			

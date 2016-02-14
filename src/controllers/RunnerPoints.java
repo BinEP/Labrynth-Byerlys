@@ -5,9 +5,13 @@ import java.awt.Graphics2D;
 
 import extendeds.Controller;
 import extendeds.Subcontrol;
+import networking.NetGameState;
+import networking.NetworkListener;
+import networking.NetworkManager;
+import networking.NetworkVariableControl;
 import shapes.BSRectangle;
 
-public class RunnerPoints extends Controller {
+public class RunnerPoints extends Controller implements NetworkListener, NetworkVariableControl {
     /*
     ***ERROR CODES***
     1      Not enough points
@@ -28,6 +32,7 @@ public class RunnerPoints extends Controller {
     public int ticksMin = 10;
     public int ticks = ticksMin;
 
+    public boolean moved = false;
     
     public enum MovementError {
     	noPoints, nothingThere, outOfBounds, wall, appleSauce, banana, noError, tooFast
@@ -42,6 +47,8 @@ public class RunnerPoints extends Controller {
 	
 	public RunnerPoints(Subcontrol control) {
 		super(control);
+		NetworkManager.addNetworkListener(this);
+		NetworkManager.addNetworkVariableController(this);
 	}
 	
 	public void timeouts(){
@@ -189,7 +196,7 @@ public class RunnerPoints extends Controller {
 			System.out.println("Left Pressed");
 			move(4);
 		}
-
+		moved = true;
 	}
 
 	@Override
@@ -222,5 +229,39 @@ public class RunnerPoints extends Controller {
 		BSRectangle scaledRunner = new BSRectangle(runner.x * subController.MAZE.tileSize + subController.MAZE.xStartCoord + 5, 5 + runner.y * subController.MAZE.tileSize, subController.MAZE.runnerSize, subController.MAZE.runnerSize);
 		scaledRunner.setColor(Color.GREEN);
 		scaledRunner.autoDraw(g);
+	}
+
+	@Override
+	public boolean ifNewState() {
+		// TODO Auto-generated method stub
+		if (moved) {
+			moved = false;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void setUpdatedState(NetGameState state) {
+		// TODO Auto-generated method stub
+		state.runner = runner;
+	}
+
+	@Override
+	public void newUpdateFromServer(NetGameState state) {
+		// TODO Auto-generated method stub
+		runner = state.runner;
+	}
+	
+	@Override
+	public void netVarsReset(NetGameState state) {
+		// TODO Auto-generated method stub
+		state.runner = new BSRectangle(0, subController.MAZE.map.length - 1, subController.MAZE.runnerSize, subController.MAZE.runnerSize);
+	}
+	
+	@Override
+	public void netVarsSetup(NetGameState state) {
+		// TODO Auto-generated method stub
+		state.runner = runner;
 	}
 }
