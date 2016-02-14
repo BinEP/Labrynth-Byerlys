@@ -136,7 +136,7 @@ public class RunnerPoints extends Controller {
 			suspended = true;
 		}
 		System.out.println("Should Move");
-		if (Maze.map[runner.y + deltaY][runner.x + deltaX] == 0) {
+		if (Maze.map[runner.y + deltaY][runner.x + deltaX] == OPEN) {
 			runner.x += deltaX;
 			runner.y += deltaY;
 		}
@@ -213,7 +213,7 @@ public class RunnerPoints extends Controller {
 	@Override
 	public void drawPlaying(Graphics2D g) {
 		// TODO Auto - generated method stub
-		BSRectangle scaledRunner = new BSRectangle(runner.x * Maze.tileSize + Maze.xStartCoord, runner.y * Maze.tileSize, Maze.runnerSize, Maze.runnerSize);
+		BSRectangle scaledRunner = new BSRectangle(runner.x * Maze.tileSize + Maze.xStartCoord + 5, 5 + runner.y * Maze.tileSize, Maze.runnerSize, Maze.runnerSize);
 		scaledRunner.setColor(Color.GREEN);
 		scaledRunner.autoDraw(g);
 	}
