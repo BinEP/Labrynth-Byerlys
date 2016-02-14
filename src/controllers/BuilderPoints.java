@@ -1,49 +1,37 @@
 package controllers;
 
 import extendeds.Controller;
+import extendeds.Subcontrol;
 
 public class BuilderPoints extends Controller {
-
 	static int points;
-
-	public void timeouts(){
-
+	static int appleSauceTimeout;
+	
+public int spillAppleSauce(int yLoc, int xLoc){
+	
+	if(Subcontrol.MAZE.map[yLoc][xLoc]==3){
+	return 16;
+	}
+	
+	if(Subcontrol.MAZE.map[yLoc][xLoc]==1) {
+	return 17;
 	}
 
-	public int removeSection(int yLocation, int xLocation){
-		if (Subcontrol.MAZE[yLocation][xLocation] != 1) return 11;
-		Subcontrol.MAZE[yLocation][xLocation] = 0;
-		BuilderPoints.points++;
-	}
 
-	public int buildSection(int yLocation, int xLocation){
-		if (Subcontrol.MAZE[yLocation][xLocation] == 1) return 12;
-		if (Subcontrol.MAZE[yLocation][xLocation] == 2 || Subcontrol.MAZE[yLocation][xLocation] == 3) return 13;
-		Subcontrol.MAZE[yLocation][xLocation] = 0;
-		BuilderPoints.points = BuilderPoints.points-3;
-		return 0;
+	if(Subcontrol.MAZE.map[yLoc][xLoc]==2){
+	return 18;
 	}
-
-	public int putBananaPeel(int yLocation, int xLocation){
-		if (Subcontrol.MAZE[yLocation][xLocation] == 1) return 12;
-		if (Subcontrol.MAZE[yLocation][xLocation] == 2) return 14;
-		if (Subcontrol.MAZE[yLocation][xLocation] == 3) return 15;
-		Subcontrol.MAZE[yLocation][xLocation] = 2;
-		BuilderPoints.points--;
-		return 0;
-	}
-
-	public int spillAppleSauce(int yLocation, int xLocation){
+	
+	Subcontrol.MAZE.map[yLoc][xLoc]=3;
+	BuilderPoints.points=3;
+	BuilderPoints.appleSauceTimeout=3;
+	return 0;
+}
+	
+	public static void main(String[] args) {
 		
 	}
-
-
-
-
-
-	public static void main(String[] args) {
-
-	}
+	
 
 	@Override
 	public void update() {
