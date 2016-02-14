@@ -2,6 +2,8 @@ package controllers;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import extendeds.Controller;
 import extendeds.Subcontrol;
@@ -49,6 +51,8 @@ public class RunnerPoints extends Controller implements NetworkListener, Network
 		super(control);
 		NetworkManager.addNetworkListener(this);
 		NetworkManager.addNetworkVariableController(this);
+		
+		
 	}
 	
 	public void timeouts(){

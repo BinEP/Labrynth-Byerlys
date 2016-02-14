@@ -19,10 +19,15 @@ public class ScreenButtons extends Controller {
 	public enum Button {
 		BANANA,
 		BOMB,
-		GHOST
+		GHOST,
+		APPLESAUCE,
+		HAMMER,
+		TRASHCAN
 	};
 	
 	public Button button;
+	
+	public String buttonString;
 	
 	public BSLine buttonDivider = new BSLine (0, 420, 800, 420);
 	
@@ -141,20 +146,33 @@ public class ScreenButtons extends Controller {
 	
 	public void first(){
 		button = Button.BANANA;
+		buttonString = "Banana";
 	}
 	
 	public void second(){
 		if(main.role.role){
 			button = Button.BOMB;
+			buttonString = "Bomb";
+		} else {
+			button = Button.APPLESAUCE;
+			buttonString = "AppleSauce";
 		}
 	}
 	
 	public void third(){
+		if (!main.role.role){
+			button = Button.HAMMER;
+			buttonString = "Hammer";
+		}
 	}
 	
 	public void fourth(){
 		if(main.role.role){
 			button = Button.GHOST;
+			buttonString = "Ghost";
+		} else {
+			button = Button.TRASHCAN;
+			buttonString = "Trashcan";
 		}
 	}
 
