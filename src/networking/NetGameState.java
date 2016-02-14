@@ -2,6 +2,8 @@ package networking;
 
 import java.io.Serializable;
 
+import game_state.SceneManager;
+
 /**
  * This class holds all the necessary information to represent the state of a
  * game of networked TicTacToe. It includes the method
@@ -15,7 +17,7 @@ import java.io.Serializable;
  * class decides at random which of the two players will play 'X' and which will
  * play 'O'. X always makes the first move.
  */
-public class GameState implements Serializable {
+public class NetGameState implements Serializable {
 
 	// -------------- state variables recording the state of the game
 	// -------------------
@@ -93,9 +95,9 @@ public class GameState implements Serializable {
 	 */
 	public void applyMessage(int sender, Object message) {
 		
-		if (message instanceof GameState) {
+		if (message instanceof NetGameState) {
 
-			GameState theState = (GameState) message;
+			NetGameState theState = (NetGameState) message;
 
 			playerNumOfCards = theState.playerNumOfCards;
 //			deck = theState.deck;
@@ -234,6 +236,7 @@ public class GameState implements Serializable {
 //		deckPairsSetup();
 //		setUpButtons();
 		NetworkManager.networkSetupVariables(this);
+		SceneManager.setScene(0);
 
 	}
 //

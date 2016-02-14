@@ -1,5 +1,7 @@
 package controllers;
 
+import java.awt.Graphics2D;
+
 import extendeds.Controller;
 import extendeds.Subcontrol;
 
@@ -103,6 +105,18 @@ public class BuilderPoints extends Controller {
 	public void setup() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawPlaying(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

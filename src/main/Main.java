@@ -2,6 +2,7 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -11,45 +12,51 @@ import extendeds.Subcontrol;
 import game_actions.Game;
 import game_actions.Runner;
 import game_actions.Scene;
+import game_state.GameStateManager;
+import game_state.GameStateManager.GameState;
 import game_state.SceneManager;
-import networking.GameState;
+import networking.NetGameState;
 import networking.NetSetup;
+import networking.NetworkListener;
 import networking.NetworkManager;
 import shapes.BSString;
 
-public class Main extends Game {
+public class Main extends Game implements NetworkListener {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Subcontrol subScenes;
+	private Subcontrol subScenes = new Subcontrol();
 	
-	public static NetworkManager networkManager;
+	public NetworkManager networkManager = NetSetup.setupNetwork();
+	
 	private static JLabel message = new JLabel();
-	public static GameState STATE;
+	public static NetGameState STATE;
+	
+	public static boolean ROLE = true;
 	
 	public Main()  {
 //	networkManager = new NetworkManager(HOST, PORT, SERVER, this);
 	
-		subScenes = new Subcontrol();
+//		subScenes = new Subcontrol();
+//		networkManager = nm;
 
 	}
 	
 	public static void main(String[] args) {
 		
-		
-		networkManager = NetSetup.setupNetwork();
-		
-		Runner runner = new Runner(new Main());
+		Main main = new Main();
+		NetworkManager.addNetworkListener(main);
+		Runner runner = new Runner(main);
 		runner.add(message, BorderLayout.SOUTH);
 		runner.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				endGame();
+				main.endGame();
 			}
 		});
 		
-		setupWaitScene();
-		SceneManager.setScene("Network Waiting");
+//		setupWaitScene();
+//		SceneManager.setScene("Network Waiting");
 	}
 	
 	private static void setupWaitScene() {
@@ -87,6 +94,7 @@ public class Main extends Game {
 	@Override
 	public void drawPlaying(Graphics2D g) {
 		// TODO Auto-generated method stub
+		System.out.println("Draw Playing");
 		subScenes.drawPlaying(g);
 	}
 
@@ -107,8 +115,37 @@ public class Main extends Game {
 		message.setText(newMessage);
 	}
 	
-	public static void endGame() {
+	public void endGame() {
 		networkManager.disconnectClient();
 		
+	}
+	
+//	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+//		super.keyPressed(e);
+//		if (e.getKeyCode() == KeyEvent.VK_ENTER && GameStateManager.isStartGame()) {
+//			
+//		}
+//	}
+
+	@Override
+	public void setUpdatedState(NetGameState state) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void newUpdateFromServer(NetGameState state) {
+		// TODO Auto-generated method stub
+		if (state.playing)  {
+			GameStateManager.toPlayingBooleans();
+			setup();
+		}
+	}
+
+	@Override
+	public boolean ifNewState() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

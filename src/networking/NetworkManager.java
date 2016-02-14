@@ -32,7 +32,7 @@ public class NetworkManager {
 	 * This is done in the newState() method, which is called by the
 	 * TicTacToeClient object.
 	 */
-	private GameState state;
+	private NetGameState state;
 
 	private int myID; // The ID number that identifies the player using this
 //	public boolean cheat = true; // window.
@@ -67,7 +67,8 @@ public class NetworkManager {
 	public NetworkManager(String host, int port) throws IOException {
 			connection = new GameClient(host, port);
 			myID = connection.getID();
-			SceneManager.setScene("Start");
+			state = new NetGameState();
+//			SceneManager.setScene("Start");
 	}
 		
 	public void setMain(Main main) {
@@ -97,7 +98,7 @@ public class NetworkManager {
 		}
 	}
 	
-	public static void messageReceived(GameState state) {
+	public static void messageReceived(NetGameState state) {
 		synchronized(netListeners) {
 			for (NetworkListener nl : netListeners) {
 				nl.newUpdateFromServer(state);
@@ -119,7 +120,16 @@ public class NetworkManager {
 		return ifNew;
 	}
 	
-	public static void networkSetupVariables(GameState state) {
+	public NetGameState getState() {
+		return state;
+	}
+	
+	public void setState(NetGameState state) {
+		this.state = state;
+		connection.send(state);
+	}
+	
+	public static void networkSetupVariables(NetGameState state) {
 		synchronized(netVariableControllers) {
 			for (NetworkVariableControl nl : netVariableControllers) {
 				nl.netVarsSetup(state);
@@ -127,7 +137,7 @@ public class NetworkManager {
 		}
 	}
 	
-	public static void networkResetVariables(GameState state) {
+	public static void networkResetVariables(NetGameState state) {
 		synchronized(netVariableControllers) {
 			for (NetworkVariableControl nl : netVariableControllers) {
 				nl.netVarsReset(state);
@@ -135,7 +145,7 @@ public class NetworkManager {
 		}
 	}
 	
-	public static boolean networkShouldEndGame(GameState state) {
+	public static boolean networkShouldEndGame(NetGameState state) {
 		synchronized(netVariableControllers) {
 			for (NetworkVariableControl nl : netVariableControllers) {
 				if (nl.shouldEndGame(state)) return true;

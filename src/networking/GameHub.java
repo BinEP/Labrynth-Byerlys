@@ -14,7 +14,7 @@ import networking.utils.Hub;
  */
 public class GameHub extends Hub {
     
-    private GameState state;  // Records the state of the game.
+    private NetGameState state;  // Records the state of the game.
 
     /**
      * Create a hub, listening on the specified port.  Note that this
@@ -27,7 +27,7 @@ public class GameHub extends Hub {
      */
     public GameHub(int port) throws IOException {
         super(port);
-        state = new GameState();
+        state = new NetGameState();
         setAutoreset(true);
     }
 

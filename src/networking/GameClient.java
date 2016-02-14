@@ -30,11 +30,11 @@ public class GameClient extends Client {
 	 * SwingUtilities.invokeLater() so that it will run in the GUI event thread.
 	 */
 	protected void messageReceived(final Object message) {
-		if (message instanceof GameState) {
+		if (message instanceof NetGameState) {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() { // calls a method at the end of the
 									// TicTacToeWindow class
-					NetworkManager.messageReceived((GameState) message);
+					NetworkManager.messageReceived((NetGameState) message);
 				}
 			});
 		}

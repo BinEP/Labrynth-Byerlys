@@ -2,7 +2,7 @@ package networking;
 
 public interface NetworkListener {
 	public boolean ifNewState();
-	public void setUpdatedState(GameState state);
-	public void newUpdateFromServer(GameState state);
+	public void setUpdatedState(NetGameState state);
+	public void newUpdateFromServer(NetGameState state);
 
 }

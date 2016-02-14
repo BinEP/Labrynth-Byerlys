@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
+import main.Main;
 import utility_classes.ScanNetwork;
 
 import java.io.IOException;
@@ -156,6 +158,7 @@ public class NetSetup {
 //                Hub chatHub;
                 try {
                     hub = new GameHub(port);
+                    Main.ROLE = false;
 //                    chatHub = new Hub(CHAT_PORT); 
                 }
                 catch (Exception e) {

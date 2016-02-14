@@ -1,6 +1,7 @@
 package controllers;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 
@@ -130,6 +131,18 @@ public class ScreenButtons extends Controller {
 	
 	public void fourth(){
 		button = Button.GHOST;
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawPlaying(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

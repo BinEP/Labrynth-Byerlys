@@ -1,15 +1,21 @@
 package controllers;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import shapes.BSRectangle;
+import shapes.interfaces.BSShape;
 import extendeds.Controller;
 
 public class Maze extends Controller {
 	public int xStartCoord = 200;
-	public int yStartCoord = 0;
+	public int yStartCoord = 40;
 	public int tileSize = 40;
 	public int mapSide = 400;
+	public int runnerSize = 30;
+	
+	ArrayList<BSShape> shapes = new ArrayList<BSShape>();
 	
 	public BSRectangle mapSize = new BSRectangle(xStartCoord, yStartCoord, mapSide, mapSide);
 	public int[][] map = 
@@ -22,8 +28,11 @@ public class Maze extends Controller {
 			{1, 1, 0, 1, 0, 1, 1, 0, 0, 0}, 
 			{0, 0, 0, 1, 0, 0, 1, 1, 1, 0}, 
 			{0, 1, 0, 1, 1, 0, 1, 0, 1, 0}, 
-			{0, 0, 0, 1, 0, 0, 1, 0, 0, 0},};
-
+			{0, 0, 0, 1, 0, 0, 1, 0, 0, 0}};
+	
+	public BSRectangle runner = new BSRectangle(xStartCoord + 5, 375, runnerSize, runnerSize);
+	public BSRectangle runnerVision = new BSRectangle(xStartCoord - 25, 335, tileSize * 3, tileSize * 3);
+	
 	public static void main(String[] args) {
 		
 	}
@@ -31,7 +40,7 @@ public class Maze extends Controller {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -49,21 +58,41 @@ public class Maze extends Controller {
 	@Override
 	public void setup() {
 		// TODO Auto-generated method stub
-		mapSize.setColor(Color.WHITE);
-		controller.addShapeToBeDrawn(mapSize);
-		for (int i = 0; i < map.length; i++){
-			for (int j = 0; j < map[i].length; j++){
-				BSRectangle square = new BSRectangle(xStartCoord + tileSize * i, tileSize * i, tileSize, tileSize);
-				if (map[i][j] == 1){
-					//setColor(Color.WHITE);
-					square.setColor(Color.BLACK);
-					controller.addShapeToBeDrawn(square);
-				} else {
-					square.setColor(Color.WHITE);
-					controller.addShapeToBeDrawn(square);
-				}
-			}
-		}
+		
+//		controller.addShapeToBeDrawn(mapSize);
+		
+		
+		
 
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawPlaying(Graphics2D g) {
+		// TODO Auto-generated method stub
+		mapSize.setColor(Color.WHITE);
+//		mapSize.autoDraw(g);
+		
+	for (int i = 0; i < map.length; i++){
+		for (int j = 0; j < map[i].length; j++){
+			BSRectangle square = new BSRectangle(xStartCoord + tileSize * j, tileSize * i, tileSize, tileSize);
+			square.setColor(Color.BLACK);
+
+			if (map[i][j] == 0 && runnerVision.intersects(square.getBounds2D())) {
+				square.setColor(Color.WHITE);
+			}
+			
+			square.autoDraw(g);
+		}
+	}
+		
+		
+		
+		
 	}
 }
