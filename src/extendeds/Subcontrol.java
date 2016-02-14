@@ -13,7 +13,7 @@ import shapes.interfaces.BSShape;
 
 public class Subcontrol {
 	
-	public ArrayList<Controller> controllers = new ArrayList<Controller>();
+	public static ArrayList<Controller> controllers = new ArrayList<Controller>();
 	private Main main;
 	public static Scene ALWAYS_DRAW_SCENE = new Scene("AlwaysDraw");
 	
